@@ -10,14 +10,16 @@
   <meta name="description" content="第一章介绍ros由一组工具软件构成，是一个元操作系统，特点:   消息传递接口：进程通信 硬件抽象：无需关注具体硬件 包管理：ros节点以包的形式组织起来，每个包由原码文件、配置文件、编译文件等构成 第三方库集成：Open-CV, PCL, Open-NI等 低级设备控制：控制I&#x2F;O pin, 端口传数据 分布式计算：将计算任务分布到几块计算节点上 代码复用 语言独立：可用python, c++,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:url" content="http://example.com/2022/10/20/robotic-operating-system/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="第一章介绍ros由一组工具软件构成，是一个元操作系统，特点:   消息传递接口：进程通信 硬件抽象：无需关注具体硬件 包管理：ros节点以包的形式组织起来，每个包由原码文件、配置文件、编译文件等构成 第三方库集成：Open-CV, PCL, Open-NI等 低级设备控制：控制I&#x2F;O pin, 端口传数据 分布式计算：将计算任务分布到几块计算节点上 代码复用 语言独立：可用python, c++,">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/10/20/robotic-operating-system/image-20221020164052499.png">
 <meta property="article:published_time" content="2022-10-20T07:05:50.619Z">
-<meta property="article:modified_time" content="2022-10-20T09:22:16.460Z">
+<meta property="article:modified_time" content="2022-10-20T13:32:15.662Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/10/20/robotic-operating-system/image-20221020164052499.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -66,9 +68,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-机器人操作系统" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-robotic-operating-system" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="article-date">
+    <a href="/2022/10/20/robotic-operating-system/" class="article-date">
   <time datetime="2022-10-20T07:05:50.619Z" itemprop="datePublished">2022-10-20</time>
 </a>
     
@@ -90,7 +92,7 @@
 <li>语言独立：可用python, c++, Lisp</li>
 <li>易测试：内建测试框架</li>
 <li>扩展</li>
-<li>免费<h2 id="ROS概念"><a href="#ROS概念" class="headerlink" title="ROS概念"></a>ROS概念</h2>$组织等级\left{\begin{aligned}<br>&amp; ros文件系统\<br>&amp; ros计算图\<br>&amp; ros社区<br>\end{aligned}<br>\right.$</li>
+<li>免费<h2 id="ROS概念"><a href="#ROS概念" class="headerlink" title="ROS概念"></a>ROS概念</h2>$组织等级\left\{\begin{aligned}<br>&amp; ros文件系统\\<br>&amp; ros计算图\\<br>&amp; ros社区<br>\end{aligned}<br>\right.$</li>
 </ul>
 <p>ros文件系统：ros文件在硬盘中如何组织</p>
 <ul>
@@ -106,13 +108,13 @@
 <li>参数服务：全局变量，所有进程都可访问</li>
 <li>ros话题：一对多通信模式（广播）在进程间通信，发送话题称为发表publish,接收话题称为订阅subscribe</li>
 <li>服务：一对一通信模式（请求/回复）在进程间通信，发送请求端称为客户 client,回复响应端称为服务service</li>
-<li>袋：通信格式<br>![chapter1-1](/Users/liuchuanxi/Library/Application Support/typora-user-images/image-20221020164052499.png “计算图”)</li>
+<li>袋：通信格式<br><img src="image-20221020164052499.png" alt="chapter1-1" title="计算图"></li>
 </ul>
 <p>ros社区等级</p>
 <ul>
-<li>$分布distribution:发布版本\left{\begin{aligned}<br>&amp; ROS Melodic Morenia &amp; &amp;2018.05.23\<br>&amp;ROS Lunar Loggerhead &amp; &amp;2017.05.23\<br>&amp; ROS Kinetic Kame &amp; &amp;2016.05.23\<br>&amp; ROS Indigo Igloo &amp; &amp;2014.07.22<br>\end{aligned}<br>\right.$</li>
+<li>$分布distribution:发布版本\left\{\begin{aligned}<br>&amp; ROS Melodic Morenia &amp; &amp;2018.05.23\\<br>&amp;ROS Lunar Loggerhead &amp; &amp;2017.05.23\\<br>&amp; ROS Kinetic Kame &amp; &amp;2016.05.23\\<br>&amp; ROS Indigo Igloo &amp; &amp;2014.07.22<br>\end{aligned}<br>\right.$</li>
 <li>仓库repositories：git</li>
-<li>维基wiki：<a target="_blank" rel="noopener" href="http://wiki.ros.org/">http://wiki.ros.org</a></li>
+<li>维基wiki：<a target="_blank" rel="noopener" href="http://wiki.ros.org">http://wiki.ros.org</a></li>
 <li>邮件mail list：<a target="_blank" rel="noopener" href="http://lists.ros.org/mailman/listinfo/ros-users">http://lists.ros.org/mailman/listinfo/ros-users</a></li>
 <li>解答answer：<a target="_blank" rel="noopener" href="https://answers.ros.org/questions/">https://answers.ros.org/questions/</a></li>
 </ul>
@@ -120,7 +122,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-id="cl9h316740000as3khulm1dpo" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/20/robotic-operating-system/" data-id="cl9h4oqoz0002lp3k0gj7cla4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -128,6 +130,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2022/10/20/test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          test
+        
+      </div>
+    </a>
   
   
     <a href="/2022/08/19/myFirstBlog/" id="article-nav-older" class="article-nav-link-wrap">
@@ -169,7 +180,11 @@
       <ul>
         
           <li>
-            <a href="/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">(no title)</a>
+            <a href="/2022/10/20/test/">test</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/20/robotic-operating-system/">(no title)</a>
           </li>
         
           <li>
