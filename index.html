@@ -64,6 +64,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-机器人操作系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2022-10-20T07:05:50.619Z" itemprop="datePublished">2022-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>ros由一组工具软件构成，是一个元操作系统，特点: </p>
+<ul>
+<li>消息传递接口：进程通信</li>
+<li>硬件抽象：无需关注具体硬件</li>
+<li>包管理：ros节点以包的形式组织起来，每个包由原码文件、配置文件、编译文件等构成</li>
+<li>第三方库集成：Open-CV, PCL, Open-NI等</li>
+<li>低级设备控制：控制I/O pin, 端口传数据</li>
+<li>分布式计算：将计算任务分布到几块计算节点上</li>
+<li>代码复用</li>
+<li>语言独立：可用python, c++, Lisp</li>
+<li>易测试：内建测试框架</li>
+<li>扩展</li>
+<li>免费<h2 id="ROS概念"><a href="#ROS概念" class="headerlink" title="ROS概念"></a>ROS概念</h2>$组织等级\left{\begin{aligned}<br>&amp; ros文件系统\<br>&amp; ros计算图\<br>&amp; ros社区<br>\end{aligned}<br>\right.$</li>
+</ul>
+<p>ros文件系统：ros文件在硬盘中如何组织</p>
+<ul>
+<li>package: ros包是ros框架下的个体单元，包含了：原码、第三方库、配置文件</li>
+<li>package manifests: 是一个*.xml文件记录了包的全部细节，例如：名字、描述、依赖</li>
+<li>message type: 是一个数据结构，定义*.msg文件中，该文件放在msg文件夹下</li>
+<li>service type: 是一个请求/应答服务，定义在*.srv文件中，该文件放在srv文件夹下</li>
+</ul>
+<p>ros计算图：计算图是一个点对点的网络，基本特征有：节点node、主进程ros master、参数服务parameter server、ros对话ros topic、 消息message、服务service、袋bag</p>
+<ul>
+<li>节点：表示进程</li>
+<li>主进程：串联各个节点进程</li>
+<li>参数服务：全局变量，所有进程都可访问</li>
+<li>ros话题：一对多通信模式（广播）在进程间通信，发送话题称为发表publish,接收话题称为订阅subscribe</li>
+<li>服务：一对一通信模式（请求/回复）在进程间通信，发送请求端称为客户 client,回复响应端称为服务service</li>
+<li>袋：通信格式<br>![chapter1-1](/Users/liuchuanxi/Library/Application Support/typora-user-images/image-20221020164052499.png “计算图”)</li>
+</ul>
+<p>ros社区等级</p>
+<ul>
+<li>$分布distribution:发布版本\left{\begin{aligned}<br>&amp; ROS Melodic Morenia &amp; &amp;2018.05.23\<br>&amp;ROS Lunar Loggerhead &amp; &amp;2017.05.23\<br>&amp; ROS Kinetic Kame &amp; &amp;2016.05.23\<br>&amp; ROS Indigo Igloo &amp; &amp;2014.07.22<br>\end{aligned}<br>\right.$</li>
+<li>仓库repositories：git</li>
+<li>维基wiki：<a target="_blank" rel="noopener" href="http://wiki.ros.org/">http://wiki.ros.org</a></li>
+<li>邮件mail list：<a target="_blank" rel="noopener" href="http://lists.ros.org/mailman/listinfo/ros-users">http://lists.ros.org/mailman/listinfo/ros-users</a></li>
+<li>解答answer：<a target="_blank" rel="noopener" href="https://answers.ros.org/questions/">https://answers.ros.org/questions/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-id="cl9h316740000as3khulm1dpo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-myFirstBlog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/08/19/myFirstBlog/" class="article-date">
@@ -246,7 +310,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
     </div>
   </div>
 
@@ -257,6 +321,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2022/08/19/myFirstBlog/">myFirstBlog</a>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一章介绍ros由一组工具软件构成，是一个元操作系统，特点:   消息传递接口：进程通信 硬件抽象：无需关注具体硬件 包管理：ros节点以包的形式组织起来，每个包由原码文件、配置文件、编译文件等构成 第三方库集成：Open-CV, PCL, Open-NI等 低级设备控制：控制I&#x2F;O pin, 端口传数据 分布式计算：将计算任务分布到几块计算节点上 代码复用 语言独立：可用python, c++,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一章介绍ros由一组工具软件构成，是一个元操作系统，特点:   消息传递接口：进程通信 硬件抽象：无需关注具体硬件 包管理：ros节点以包的形式组织起来，每个包由原码文件、配置文件、编译文件等构成 第三方库集成：Open-CV, PCL, Open-NI等 低级设备控制：控制I&#x2F;O pin, 端口传数据 分布式计算：将计算任务分布到几块计算节点上 代码复用 语言独立：可用python, c++,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-20T07:05:50.619Z">
+<meta property="article:modified_time" content="2022-10-20T09:22:16.460Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-机器人操作系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2022-10-20T07:05:50.619Z" itemprop="datePublished">2022-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>ros由一组工具软件构成，是一个元操作系统，特点: </p>
+<ul>
+<li>消息传递接口：进程通信</li>
+<li>硬件抽象：无需关注具体硬件</li>
+<li>包管理：ros节点以包的形式组织起来，每个包由原码文件、配置文件、编译文件等构成</li>
+<li>第三方库集成：Open-CV, PCL, Open-NI等</li>
+<li>低级设备控制：控制I/O pin, 端口传数据</li>
+<li>分布式计算：将计算任务分布到几块计算节点上</li>
+<li>代码复用</li>
+<li>语言独立：可用python, c++, Lisp</li>
+<li>易测试：内建测试框架</li>
+<li>扩展</li>
+<li>免费<h2 id="ROS概念"><a href="#ROS概念" class="headerlink" title="ROS概念"></a>ROS概念</h2>$组织等级\left{\begin{aligned}<br>&amp; ros文件系统\<br>&amp; ros计算图\<br>&amp; ros社区<br>\end{aligned}<br>\right.$</li>
+</ul>
+<p>ros文件系统：ros文件在硬盘中如何组织</p>
+<ul>
+<li>package: ros包是ros框架下的个体单元，包含了：原码、第三方库、配置文件</li>
+<li>package manifests: 是一个*.xml文件记录了包的全部细节，例如：名字、描述、依赖</li>
+<li>message type: 是一个数据结构，定义*.msg文件中，该文件放在msg文件夹下</li>
+<li>service type: 是一个请求/应答服务，定义在*.srv文件中，该文件放在srv文件夹下</li>
+</ul>
+<p>ros计算图：计算图是一个点对点的网络，基本特征有：节点node、主进程ros master、参数服务parameter server、ros对话ros topic、 消息message、服务service、袋bag</p>
+<ul>
+<li>节点：表示进程</li>
+<li>主进程：串联各个节点进程</li>
+<li>参数服务：全局变量，所有进程都可访问</li>
+<li>ros话题：一对多通信模式（广播）在进程间通信，发送话题称为发表publish,接收话题称为订阅subscribe</li>
+<li>服务：一对一通信模式（请求/回复）在进程间通信，发送请求端称为客户 client,回复响应端称为服务service</li>
+<li>袋：通信格式<br>![chapter1-1](/Users/liuchuanxi/Library/Application Support/typora-user-images/image-20221020164052499.png “计算图”)</li>
+</ul>
+<p>ros社区等级</p>
+<ul>
+<li>$分布distribution:发布版本\left{\begin{aligned}<br>&amp; ROS Melodic Morenia &amp; &amp;2018.05.23\<br>&amp;ROS Lunar Loggerhead &amp; &amp;2017.05.23\<br>&amp; ROS Kinetic Kame &amp; &amp;2016.05.23\<br>&amp; ROS Indigo Igloo &amp; &amp;2014.07.22<br>\end{aligned}<br>\right.$</li>
+<li>仓库repositories：git</li>
+<li>维基wiki：<a target="_blank" rel="noopener" href="http://wiki.ros.org/">http://wiki.ros.org</a></li>
+<li>邮件mail list：<a target="_blank" rel="noopener" href="http://lists.ros.org/mailman/listinfo/ros-users">http://lists.ros.org/mailman/listinfo/ros-users</a></li>
+<li>解答answer：<a target="_blank" rel="noopener" href="https://answers.ros.org/questions/">https://answers.ros.org/questions/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" data-id="cl9h316740000as3khulm1dpo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/08/19/myFirstBlog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">myFirstBlog</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/20/%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/19/myFirstBlog/">myFirstBlog</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/19/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/19/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F%2004c79e1b2b7546429c00330b96b6df27/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
