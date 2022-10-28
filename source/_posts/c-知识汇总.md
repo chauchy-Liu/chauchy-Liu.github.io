@@ -49,7 +49,53 @@ typedef __attribute__((aligned(4))) struct A
 
 - 1. 根据变量定义顺序和所占字节分配空间
   2. 当变量存储的起始地址不满足对齐方式(自身对齐方式)时要填补字节知直到满足对齐方式
-  3. 所有变量分配空间完成后，整个结构体按照要求的对齐方式(\__attribute__((aligned(n)))__,默认对齐方式是结构体中最大数据类型所占的空间)判断是否再添补空间
+  3. 所有变量分配空间完成后，整个结构体按照要求的对齐方式（ \__attribute__((aligned(n))) ）,默认对齐方式是结构体中最大数据类型所占的空间)判断是否再添补空间
 
 ![存储图](内存副本.jpg)
-图中上边区域是4字节对齐，下边是4字节对齐，但是类型数量都一致但是顺序不同
+图中上边区域是4字节对齐，下边是4字节对齐，类型数量都一致但是顺序不同
+
+# 类型转换
+## reinterpret_cast
+允许将任意指针转换成其他类型指针，允许任意整数类型和任意指针类型转化，转化时是逐比特位的复制操作，但后续cpu读取内存时会根据转化后的类型进行。
+- reinterpret_cast不关心继承关系，不会在继承类间穿梭
+```c++
+class A
+{
+public:
+	int a;
+	void funA(){cout<<"A::funA"<<endl;}
+};
+class B
+{
+public:
+	int b;
+	void funB(){cout<<"B::funB"<<endl;}
+};
+class D: public A, public B
+{
+public:
+	int d;
+	void funD(){cout<<"D::funD"<<endl;}
+};
+B* pb;
+D d;
+pb = &d;
+//pd1指向d对象中B类型部分的起始地址，即*pd1的地址和d的地址不一致
+D* pd1 = reinterpret_cast<D*>(pb);
+//pd2指向d对象中D类型部分的起始地址，即*pd2的地址和d的地址一致
+D* pd2 = static_cast<D*>(pb);
+```
+- reinterpret_cast不会强制去掉const, 例如
+```c++
+//创建函数
+void thump(char* p){*p = 'x';}
+//命名函数指针类型
+typedef void (*PF)(const char*);
+//创建函数指针
+PF pf;
+//给函数指针赋值
+pf = reinterpret_cast<PF>(&thump);
+//pf = static_cast<PF>(&thump);错误：无法将void (*)(char*)函数值指针转换成void (*)(const char*)函数指针
+const char* str = 'h';
+pf(str);
+```
