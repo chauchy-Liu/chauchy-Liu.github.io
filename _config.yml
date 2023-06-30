@@ -144,3 +144,9 @@ live2d:
     hOffset: 0
   mobile:
     show: false
+
+#hexo-renderer-babelify插件 es6语法配置
+babelify:
+  presets:
+    - '@babel/preset-env'
+  sourceMap: true
