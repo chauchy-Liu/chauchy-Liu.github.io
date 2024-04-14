@@ -1,0 +1,426 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>rna_match | 和其光, 同其尘</title><meta name="author" content="刘传玺"><meta name="copyright" content="刘传玺"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="RNA RNA secondary structure prediction using deep learning with thermodynamic integration RNA二级结构方法：  热力学模型–最近临方法  二级结构分解成若干子结构环（hairpin loops, internal loops, bulge loops, base-pair stackings, multi-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rna_match">
+<meta property="og:url" content="http://chauchy-liu.github.io/2023/10/06/rna-match/index.html">
+<meta property="og:site_name" content="和其光, 同其尘">
+<meta property="og:description" content="RNA RNA secondary structure prediction using deep learning with thermodynamic integration RNA二级结构方法：  热力学模型–最近临方法  二级结构分解成若干子结构环（hairpin loops, internal loops, bulge loops, base-pair stackings, multi-">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG">
+<meta property="article:published_time" content="2023-10-06T09:08:58.000Z">
+<meta property="article:modified_time" content="2024-04-13T13:10:08.754Z">
+<meta property="article:author" content="刘传玺">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://chauchy-liu.github.io/2023/10/06/rna-match/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'rna_match',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-13 21:10:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">和其光, 同其尘</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">rna_match</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-06T09:08:58.000Z" title="发表于 2023-10-06 17:08:58">2023-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-13T13:10:08.754Z" title="更新于 2024-04-13 21:10:08">2024-04-13</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="rna_match"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>RNA</h1>
+<h1>RNA secondary structure prediction using deep</h1>
+<p>learning with thermodynamic integration<br>
+RNA二级结构方法：</p>
+<ol>
+<li>热力学模型–最近临方法
+<ul>
+<li>二级结构分解成若干子结构环（hairpin loops, internal loops, bulge loops, base-pair stackings, multi-branch loops, and external loops）,累加每个子结构环的自由能，子结构环自由能由实验获取。</li>
+<li>动态规划–Zuker计算最小自由能</li>
+</ul>
+</li>
+<li>机器学习
+<ul>
+<li>对分解后的子结构训练得分参数</li>
+<li>对训练数据过拟合</li>
+</ul>
+</li>
+<li>概率生成stochastic context-free grammars (SCFGs)</li>
+<li>混合方法<br>
+结合热力学和机器学习<br>
+数据包含：1、RNA序列，2、已知的二级结构dot-brancket格式，3、二级结构的自由能, 构成三元组<br>
+预测4种折叠分数类型</li>
+</ol>
+<h2 id="方法：">方法：</h2>
+<ol>
+<li>输入：长度为L的RNA序列，序列元素被编码成d维矢量<img src="/../rna-match/image-20231006203332645.png" alt="image-20231006203332645"></li>
+</ol>
+<p><img src="/../rna-match/image-20231006205404268.png" alt="image-20231006205404268"></p>
+<h1>UFold: fast and accurate RNA secondary structure prediction with deep learning</h1>
+<h2 id="RNA分类">RNA分类</h2>
+<p>ribosomal RNA, transfer RNA, small nuclear RNA, micro RNA, noncoding RNA<br>
+RNA功能和secondary structure有关而不是RNA序列本身<br>
+secondary struture由原子坐标决定<br>
+基对如果是嵌套式（无伪结点）的则最小自由能可以通过动态规划求解，基对非嵌套式（含伪结点）<br>
+研究方法：1、单序列能量最小，2、多序列协方差<br>
+深度学习方法：</p>
+<ul>
+<li>输入序列利用LSTM或者transformer encoder</li>
+<li>深度学习和动态规划结合<br>
+挑战：</li>
+</ul>
+<ol>
+<li>LSTM和transformer encoder解决模型参数大的问题导致计算成本高以及效率低</li>
+<li>深度学习与动力学结合后会受后者的约束影响性能</li>
+<li>深度学习性能严重依赖于数据的分布</li>
+</ol>
+<p>数据：</p>
+<ol>
+<li>bpRNA-new dataset用于cross-family评估</li>
+<li>RNAStralign: 24895用于训练，2854用于测试</li>
+<li>ArchivelII</li>
+<li>bpRNA-1m</li>
+</ol>
+<p>本文方法：</p>
+<ol>
+<li>
+<p>输入为二维图片16个通道(用以考虑各种可能的基对以及非准则配对)，再外加一个通道记录输入三种匹配基对的概率</p>
+<ul>
+<li>input: $x=(x_1, x_2, \cdots, x_L), \quad x_i\in{‘A’, ‘U’,‘C’,‘G’}$,</li>
+<li>one-hot 编码$x$序列中的每一个元素，生成二进制矩阵$X\in{0,1}^{L\times4}$</li>
+<li>$X$与$X^T$做Kronecker积生成$K\in{0,1}^{16\times L\times L}$, $K(i,j,k)$表示根据第i条基的配对规则$x_j$和$x_k$之间是否配对</li>
+<li>为克服$K$矩阵的稀疏性，以及反应出潜在的非准则的基配对，再加一个特征通道，记录各基之间配对发生的概率，该矩阵是非二进制矩阵 $W\in\mathcal{R}^{1\times L\times L}$</li>
+<li>将$W\in\mathcal{R}^{1\times L\times L}$连接到$K$中得到$I\in\mathcal{R}^{17\times L\times L}$</li>
+</ul>
+</li>
+<li>
+<p>编解码框架提取多尺度相关性特征</p>
+<ul>
+<li>
+<p>UFold接收$I$张量</p>
+</li>
+<li>
+<p>编码器由一系列下采样层构成，解码器由一系列上采样层以及同编码器侧向连接层构成</p>
+<p><img src="/../rna-match/image-20231010222820760.png" alt="image-20231010222820760"></p>
+</li>
+<li>
+<p>输出$Y=f(I;\theta)$, $Y\in[0,1]^{L\times L}$, $Y_{ij}$表示$x_i$和$x_j$之间发生配对的概率值</p>
+</li>
+</ul>
+</li>
+<li>
+<p>输出基对之间相关性得分矩阵</p>
+<ul>
+<li>secondary structure由接触矩阵表达$A\in{0,1}^{L\times L}, \quad A_{ij}=1; if, a ,base, paring, between, x_i ,and, x_j$</li>
+</ul>
+</li>
+<li>
+<p>后处理</p>
+<ul>
+<li>将得到的$Y$张量处理成secondary structure</li>
+<li>后处理考虑4个约束
+<ol>
+<li>接触矩阵是对称矩阵</li>
+<li>标准配对准则和U-G配对准则是被允许的</li>
+<li>no sharp loops被允许，即环的尺度有限制至少包含4个base</li>
+<li>非重叠配对被允许</li>
+</ol>
+</li>
+<li>用约束条件生成处理后的得分矩阵$\hat{Y}^*$</li>
+</ul>
+</li>
+</ol>
+<h1>A novel SHAPE reagent enables the analysis of RNA structure in living cells with unprecedented accuracy</h1>
+<p>两类化合物</p>
+<ul>
+<li>nucleobase-specific probe: dimethyl sulfate (DMS)等
+<ul>
+<li>优点：在MaP实验中的高信噪比</li>
+</ul>
+</li>
+<li>selective 2’-hydroxyl acylation analyzed by primer extension (SHAPE)
+<ul>
+<li>已有试剂：1M7, FAI, NAI
+<ul>
+<li>优点：无偏检测4种RNA基</li>
+</ul>
+</li>
+<li>2A3
+<ul>
+<li>优点：对RNA反应性增加，对细胞膜的高渗透性，这两点会引出高信噪比对比NAI</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>读取RNA，突变分析方法mutational profiling approaches（MaP）</p>
+<ul>
+<li>典型：检测逆转录下降reverse transcription (RT) drop-off events</li>
+</ul>
+<p>Phred数值通常以负数表示,数值越高,表示测序结果越可靠,错误率越低。</p>
+<p>rf-map module: 读数<br>
+rf-count module：生成突变信号<br>
+rf-jackknife module：最优slop/intercept网格搜索</p>
+<p><img src="/../rna-match/image-20231017145705698.png" alt="image-20231017145705698"></p>
+<p><img src="/../rna-match/image-20231017150209884.png" alt="image-20231017150209884"></p>
+<p>使用SHAPE推理的反应进行经验驱动的RNA结构建模，将反应转换成无结点能量贡献，转换依赖参数slope(m)和intercept(b),we first used the ViennaRNA Package 2.0 (29) to perform a grid search of the optimal m/b pairs</p>
+<p>GPT:<br>
+Predicting RNA secondary structure using SHAPE (Selective 2’-Hydroxyl Acylation analyzed by Primer Extension) reactivities involves a combination of experimental data and computational methods. Here’s a step-by-step guide on how to use SHAPE reactivities to predict RNA secondary structure:</p>
+<p>Obtain SHAPE Reactivity Data:</p>
+<p>Perform a SHAPE experiment to obtain reactivity data for the RNA molecule of interest. This involves treating the RNA with a SHAPE reagent and measuring the extent of reactivity at each nucleotide position.<br>
+Normalize the reactivity values to a scale between 0 and 1, where 0 represents no reactivity, and 1 represents the highest reactivity. This normalization is important for consistency and comparability.<br>
+Calculate Pseudo-Free Energy Contributions:</p>
+<p>Use the SHAPE reactivity data to calculate pseudo-free energy contributions for each nucleotide. The pseudo-free energy is calculated using a formula such as:</p>
+<p>ΔG = -RT * ln(1 - reactivity)</p>
+<p>Where:</p>
+<p>ΔG is the pseudo-free energy contribution.<br>
+R is the gas constant (approximately 0.001987 kcal/(mol·K)).<br>
+T is the temperature in Kelvin.<br>
+reactivity is the normalized SHAPE reactivity value for the nucleotide.<br>
+Determine a reference position with a pseudo-free energy contribution of zero. This reference position can be an unpaired nucleotide or a known base pair.</p>
+<p>Use RNA Folding Software:</p>
+<p>Utilize RNA secondary structure prediction software or algorithms that incorporate pseudo-free energy contributions. Popular software packages include RNAstructure, ViennaRNA, and others.<br>
+Input the RNA sequence, the calculated pseudo-free energy contributions, and any structural constraints or pairing information if available.<br>
+Run Secondary Structure Prediction:</p>
+<p>Run the secondary structure prediction algorithm or software to generate the RNA’s secondary structure. The software will use the calculated pseudo-free energy contributions to guide the folding process.<br>
+The output will typically provide you with a predicted secondary structure, including base pairs and unpaired regions.<br>
+Analyze and Refine the Prediction:</p>
+<p>Examine the predicted secondary structure and consider whether it aligns with known structural motifs or functional elements within the RNA.<br>
+Optionally, refine the prediction by adjusting the pseudo-free energy contributions or incorporating additional experimental data, if available.<br>
+Validate and Compare with Experimental Data:</p>
+<p>If experimental structural data, such as chemical probing or NMR, is available for the same RNA molecule, compare the predicted structure with the experimental data to assess the accuracy of the prediction.<br>
+Iterate and Improve:</p>
+<p>Depending on the quality of the prediction and the RNA’s complexity, you may need to iterate through the process, making adjustments to the pseudo-free energy contributions or exploring different structural constraints to improve the accuracy of the prediction.<br>
+It’s important to note that while SHAPE-guided structure prediction can provide valuable insights into RNA secondary structure, it is a computational approximation and may not always perfectly capture the full complexity of RNA folding. Careful consideration of the results and validation against experimental data are essential for a reliable prediction.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://chauchy-Liu.github.io">刘传玺</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://chauchy-liu.github.io/2023/10/06/rna-match/">http://chauchy-liu.github.io/2023/10/06/rna-match/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://chauchy-Liu.github.io" target="_blank">和其光, 同其尘</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/20/PyQt5/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PyQt5</div></div></a></div><div class="next-post pull-right"><a href="/2023/09/28/c/"><img class="next-cover" src="https://hexo-theme-snippet-1251680922.cos.ap-beijing.myqcloud.com/img/banner.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">c#</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">刘传玺</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chauchy-liu/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:liuchuanxi_211@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">学习笔记</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">RNA</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">RNA secondary structure prediction using deep</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">方法：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">UFold: fast and accurate RNA secondary structure prediction with deep learning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RNA%E5%88%86%E7%B1%BB"><span class="toc-number">3.1.</span> <span class="toc-text">RNA分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">A novel SHAPE reagent enables the analysis of RNA structure in living cells with unprecedented accuracy</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/robotic-operating-system/" title="机器人操作系统"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover6.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器人操作系统"/></a><div class="content"><a class="title" href="/2024/04/13/robotic-operating-system/" title="机器人操作系统">机器人操作系统</a><time datetime="2024-04-13T13:10:08.758Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/hello-world/" title="Hello World"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2024/04/13/hello-world/" title="Hello World">Hello World</a><time datetime="2024-04-13T13:10:08.753Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/" title="姿态检测公式"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="姿态检测公式"/></a><div class="content"><a class="title" href="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/" title="姿态检测公式">姿态检测公式</a><time datetime="2024-04-13T13:10:08.736Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/21/flask-md/" title="flask.md"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="flask.md"/></a><div class="content"><a class="title" href="/2024/02/21/flask-md/" title="flask.md">flask.md</a><time datetime="2024-02-21T03:02:19.000Z" title="发表于 2024-02-21 11:02:19">2024-02-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/04/%E7%94%9F%E6%88%90%E6%8A%A5%E8%A1%A8-md/" title="生成报表.md"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover1.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="生成报表.md"/></a><div class="content"><a class="title" href="/2024/02/04/%E7%94%9F%E6%88%90%E6%8A%A5%E8%A1%A8-md/" title="生成报表.md">生成报表.md</a><time datetime="2024-02-04T07:58:44.000Z" title="发表于 2024-02-04 15:58:44">2024-02-04</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 刘传玺</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://chauchy-liu.github.io/2023/10/06/rna-match/'
+    this.page.identifier = '/2023/10/06/rna-match/'
+    this.page.title = 'rna_match'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":100,"height":200,"vOffset":-80,"hOffset":0},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
