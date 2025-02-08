@@ -1,18 +1,18 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>姿态检测公式 | 和其光, 同其尘</title><meta name="keywords" content="神经网络,机器学习"><meta name="author" content="刘传玺"><meta name="copyright" content="刘传玺"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="姿态检测公式  已知图像I维度是w*h, 3D姿态为${P^{3D}k}^K{k&#x3D;1}$,其中K是图片中人体数目，$P_k^{3D}\in\mathbb{R}^{3\times J}$表示J个身体节点坐标，坐标是相对于盆骨节点（根节点）的。 Stage I 预测：  核心网络+两个分支网络，一个分支预测2D姿态坐标，另一支预测3D姿态编码，核心网络输出图像尺度为$\frac{w}{16}\time">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>姿态检测公式 | 和其光, 同其尘</title><meta name="keywords" content="神经网络,机器学习"><meta name="author" content="刘传玺"><meta name="copyright" content="刘传玺"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="姿态检测公式 已知图像I维度是w*h, 3D姿态为${P^{3D}k}^K{k&#x3D;1}$,其中K是图片中人体数目，$P_k^{3D}\in\mathbb{R}^{3\times J}$表示J个身体节点坐标，坐标是相对于盆骨节点（根节点）的。 Stage I 预测：  核心网络+两个分支网络，一个分支预测2D姿态坐标，另一支预测3D姿态编码，核心网络输出图像尺度为$\frac{w}{16}\times">
 <meta property="og:type" content="article">
 <meta property="og:title" content="姿态检测公式">
 <meta property="og:url" content="http://chauchy-liu.github.io/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/index.html">
 <meta property="og:site_name" content="和其光, 同其尘">
-<meta property="og:description" content="姿态检测公式  已知图像I维度是w*h, 3D姿态为${P^{3D}k}^K{k&#x3D;1}$,其中K是图片中人体数目，$P_k^{3D}\in\mathbb{R}^{3\times J}$表示J个身体节点坐标，坐标是相对于盆骨节点（根节点）的。 Stage I 预测：  核心网络+两个分支网络，一个分支预测2D姿态坐标，另一支预测3D姿态编码，核心网络输出图像尺度为$\frac{w}{16}\time">
+<meta property="og:description" content="姿态检测公式 已知图像I维度是w*h, 3D姿态为${P^{3D}k}^K{k&#x3D;1}$,其中K是图片中人体数目，$P_k^{3D}\in\mathbb{R}^{3\times J}$表示J个身体节点坐标，坐标是相对于盆骨节点（根节点）的。 Stage I 预测：  核心网络+两个分支网络，一个分支预测2D姿态坐标，另一支预测3D姿态编码，核心网络输出图像尺度为$\frac{w}{16}\times">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg">
 <meta property="article:published_time" content="2024-04-13T13:10:08.736Z">
 <meta property="article:modified_time" content="2024-04-13T13:10:08.736Z">
 <meta property="article:author" content="刘传玺">
 <meta property="article:tag" content="神经网络">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://chauchy-liu.github.io/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://chauchy-liu.github.io/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
   root: '/',
   algolia: undefined,
   localSearch: undefined,
@@ -143,114 +143,115 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">和其光, 同其尘</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">姿态检测公式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-13T13:10:08.736Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-13T13:10:08.736Z" title="更新于 2024-04-13 21:10:08">2024-04-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%96%87%E7%8C%AE/">文献</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%96%87%E7%8C%AE/%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81/">人体姿态</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="姿态检测公式"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>姿态检测公式</h1>
-<ul>
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">和其光, 同其尘</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">姿态检测公式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-13T13:10:08.736Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-13T13:10:08.736Z" title="更新于 2024-04-13 21:10:08">2024-04-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%96%87%E7%8C%AE/">文献</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%96%87%E7%8C%AE/%E4%BA%BA%E4%BD%93%E5%A7%BF%E6%80%81/">人体姿态</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="姿态检测公式"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="姿态检测公式"><a href="#姿态检测公式" class="headerlink" title="姿态检测公式"></a>姿态检测公式</h1><ul>
 <li>已知图像I维度是w*h, 3D姿态为${P^{3D}<em>k}^K</em>{k=1}$,其中K是图片中人体数目，$P_k^{3D}\in\mathbb{R}^{3\times J}$表示J个身体节点坐标，坐标是相对于盆骨节点（根节点）的。</li>
 <li>Stage I 预测：</li>
 </ul>
 <p>核心网络+两个分支网络，一个分支预测2D姿态坐标，另一支预测3D姿态编码，核心网络输出图像尺度为$\frac{w}{16}\times\frac{h}{16}$，两个分支网络输出图像尺度为$\frac{w}{8}\times\frac{h}{8}$，且3D分支要引入2D分支中的部分特征</p>
 <p><img src="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/Untitled.png" alt="Untitled"></p>
 <pre><code>- core network: selecsls net
-</code></pre>
-<p>SelecSLS模型在选择方式上使用短长范围跳跃连接,在模块内部用短范围跳跃连接，在各模块间使用长范围跳跃连接。中间特征数用k表示，最终输出特征数用$n_0$表示，卷积跨步用s表示。长连接中每个后续模块都和第一个模块连接这是为了提升网络中的信息流</p>
+</code></pre><p>SelecSLS模型在选择方式上使用短长范围跳跃连接,在模块内部用短范围跳跃连接，在各模块间使用长范围跳跃连接。中间特征数用k表示，最终输出特征数用$n_0$表示，卷积跨步用s表示。长连接中每个后续模块都和第一个模块连接这是为了提升网络中的信息流</p>
 <p><img src="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/Untitled%201.png" alt="Untitled"></p>
 <p>一个等级定义为一连串模块它们会输出相同的空间分辨率的特征图</p>
 <pre><code>- 2D分支：
-  
+
           预测2D热点图$H=\&#123;H_j\in\mathbb&#123;R&#125;^&#123;\frac&#123;w&#125;&#123;8&#125;\times\frac&#123;h&#125;&#123;8&#125;&#125;\&#125;_&#123;j=1&#125;^J$,其中J代表所有关节数,此分支使用了Part Affinity Fields(PAF)网络$F=\&#123;F_j\in\mathbb&#123;R&#125;^&#123;\frac&#123;w&#125;&#123;8&#125;\times\frac&#123;h&#125;&#123;8&#125;\times2&#125;\&#125;_&#123;j=1&#125;^J$,它表示给身体关节所有者编码，编码使用了一个单位矢量场表示关节点到运动母体的方向且矢量场宽度为相应肢体的宽度，目的是检测图片中出现的个体以及可见的关节其次是关联可见的关节到个体上。该分支输出2D身体节点位置以图像绝对坐标定位$P^&#123;2D&#125;_k\in\mathbb&#123;Z&#125;_+^&#123;2\times J&#125;$, 共有K个个体每个个体有J个关节，该分支还输出检测置信度$c_&#123;j,k&#125;$,它来自于热点图的最值。
-    
+
 - 3D分支：
-  
+
          预测中间3D姿态编码图 $L=\&#123;L_j\in\mathbb&#123;R&#125;^&#123;\frac&#123;w&#125;&#123;8&#125;\times\frac&#123;h&#125;&#123;8&#125;\times 3&#125;\&#125;_&#123;j=1&#125;^J$，该分支利用了核心网络的输出特征和2D分支网络的部分特征。在每一可见关节上的空间位置处的编码涵盖了它的3D位姿，此位姿是相对于在运动链上直接和此节点相连的其他节点的。从3D输出图L的$(u,v)_&#123;j,k&#125;$位置处提取向量$\vec&#123;l&#125;_&#123;j,k&#125;$矢量形状$1\times1\times3J$,它包含的是身体全部节点的3D姿态，每个节点的相对于母体（根节点）的坐标位于不同的通道
-    
+
     ![Untitled](Untitled%202.png)
-    
+
     $\vec&#123;l&#125;_&#123;j,k&#125;$只编码和本节点j在骨架上直接相连的节点，形式顺序是父节点-本节点和本节点-子节点，没有本节点-父节点形式顺序，且标记的坐标都是相对于父节点的，这样不用把所有节点都标记。
-    
+
 - 输出到Stage II的特征：
-  
+
           每一个个体k的可见关节的2D关节坐标 $P_k^&#123;2D&#125;$,关节置信度$\&#123;c_&#123;j,k&#125;\&#125;^J_&#123;j=1&#125;$,关节3D坐标编码$\&#123;l_&#123;j,k&#125;\&#125;^J_&#123;j=1&#125;$
-    
+
 - Stage I分阶段训练，core network和2D分支在单人数据集中训练，然后再在多人数据集中训练；
-</code></pre>
+</code></pre><ul>
+<li><p>Stage II预测：</p>
 <ul>
-<li>
-<p>Stage II预测：</p>
-<ul>
-<li>全连接网络对每一个人的每一个可见节点预测相对于根节点的3D坐标${P_k^{3D}}^K_{k=1}$</li>
+<li>全连接网络对每一个人的每一个可见节点预测相对于根节点的3D坐标${P<em>k^{3D}}^K</em>{k=1}$</li>
 <li>先把$P_k^{2D}$坐标转成相对于脖子节点的坐标</li>
-<li>连接关节相对脖子的坐标$(u,v)<em>{j,k}$，关节检测置信度 $c</em>{j,k}$和关节3D坐标编码$l_{j,k}$为$S_k\in\mathbb{R}^{J\times(3+3\cdot J)}$,如果关节不可见就只连接成0矢量</li>
-</ul>
+<li><p>连接关节相对脖子的坐标$(u,v)<em>{j,k}$，关节检测置信度 $c</em>{j,k}$和关节3D坐标编码$l_{j,k}$为$S_k\in\mathbb{R}^{J\times(3+3\cdot J)}$,如果关节不可见就只连接成0矢量</p>
 <p><img src="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/Untitled%203.png" alt="Untitled"></p>
-<ul>
-<li>
-<p>Stage II是一个5层的全连接网络，它将$S_k$转成相对于根节点的3D坐标$P_k^{3D}$</p>
-<p><img src="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/Untitled%204.png" alt="Untitled"></p>
 </li>
-<li>
-<p>Stage II 训练：</p>
+<li><p>Stage II是一个5层的全连接网络，它将$S_k$转成相对于根节点的3D坐标$P_k^{3D}$</p>
+<p>  <img src="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/Untitled%204.png" alt="Untitled"></p>
+</li>
+<li><p>Stage II 训练：</p>
 <pre><code>   Stage II 网络在MuCo-3DHP非截取的帧中训练,首先用Stage I网络在这个数据集里运行得到2D坐标和3D坐标编码，然后对每一个个体使用真实的相对于根节点的3D坐标$\&#123;(X_j,Y_j,Z_j)\&#125;^J_&#123;j=1&#125;$作为标签来训练Stage II, 使用smooth-L1 loss减轻遮挡产生的预测和标签的差异性
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 </li>
-<li>
-<p>Stage III:</p>
-<p>经过Stage I和Stage II得到了一个帧中一个人的相对于根节点的3D坐标，但是没有估计人的大小和距离相机的距离，同一人的身份没有在所有帧中进行追踪</p>
+<li><p>Stage III:</p>
+<p>  经过Stage I和Stage II得到了一个帧中一个人的相对于根节点的3D坐标，但是没有估计人的大小和距离相机的距离，同一人的身份没有在所有帧中进行追踪</p>
 <ul>
-<li>
-<p>为了在不同帧中追踪识别同一个人坐标</p>
+<li><p>为了在不同帧中追踪识别同一个人坐标</p>
 <pre><code>     现将先前的变量加一个时间索引例如$\&#123;P_i[t]\&#125;^&#123;K[t]&#125;_&#123;i=1&#125;$, 我们建模和持续追踪人的样子通过半身区域的HSV颜色直方图，对每个人切割颜色和饱和度通道成30份，在包含人体关节的边界框中定义类别概率为人体模样$A_&#123;i&#125;[t]$，缺点是颜色相似的个体问题。为了在不同帧中匹配对象更有鲁棒性匹配当前探测的人体i上先前已知的人体k要利用3个相似性，分别是人体模样相似性$S_&#123;i,k&#125;^A=(A_i[t]-A_k[t-1])^2$，2D坐标相似性$S_&#123;i,k&#125;^&#123;P^&#123;2D&#125;&#125;=(P^&#123;2D&#125;_i[t]-P^&#123;2D&#125;_k[t-1])^2$和3D坐标相似性$S_&#123;i,k&#125;^&#123;P^&#123;3D&#125;&#125;=(P^&#123;3D&#125;_&#123;i&#125;[t]-P^&#123;3D&#125;_&#123;k&#125;[t-1])$,通过设置相似性阈值检测人体被遮挡、人离开图片、人进入图片。
-</code></pre>
-</li>
-<li>
-<p>相对骨头长和绝对高度</p>
+</code></pre></li>
+<li><p>相对骨头长和绝对高度</p>
 <pre><code>      骨头长是一个尺度不变量，可以用$P_k^&#123;3D&#125;$计算，为了增加鲁棒性对连接节点的骨头长度$b_k$在10帧中做正态归一化处理。
-      
+
        将相对根节点2D坐标转成3D绝对坐标以cm为单位，这一任务很难只能凭借单目镜头猜测。先决定人在相机中的相对坐标，人的高度是从地面到一个交叉点的距离，该交叉点是放在足部位置处的虚拟广告牌和通过头部位置的视线的交点。
-</code></pre>
-</li>
-<li>
-<p>Kinematic Skeleton Fitting</p>
-<pre><code>       得到2D和3D坐标，优化骨骼坐标$\&#123;\theta_k[t]\&#125;^&#123;K[t]&#125;_&#123;k=1&#125;$, $K[t]$是场景中t时刻所有的人数，$\theta_k[t]\in\mathbb&#123;R&#125;^D$从固定骨架的关节角度加上全局根节点坐标描述人的姿态坐标, ，D=29是一个骨骼的自由度数。估计$\theta_k[t]$使拟合能量最小化：
-</code></pre>
-<p>$$<br>
-\varepsilon(\theta_1[t],…,\theta_K[t])=w_{3D}E_{3D}+w_{2D}E_{2D}+w_{lim}E_{lim}+w_{temp}E_{temp}+w_{depth}E_{depth}<br>
-$$</p>
-<p>权重$w_{3D}=9e-1, w_{2D}=1e-5, w_{3D}=5e-1, w_{temp}=1e-7, w_{depth}=8e-6$；</p>
-<p>3D逆运动误差：</p>
-<p>误差：预测的相对根节点的3D坐标$P^{3D}_k[t]$和骨骼$\mathscr{P}(\theta_k[t],b_k)$坐标，它由每个人k的每个关节j和骨骼长度$b_k$正向运动构成</p>
-<p>$$<br>
-E_{3D}=\sum_{k=1}^K\sum_{j=1}^{J^{3D}}||\mathscr{P}(\theta_k[t],b_k)<em>j-P^{3D}</em>{k,j}[t]||_2^2<br>
-$$</p>
-<p>2D从投影误差：</p>
-<p>误差：预测的2D关节坐标$P^{2D}_k[t]$和骨骼投影 $\mathcal{P}(\theta_k[t],b_k)_j$坐标</p>
-<p>$$<br>
-E_{2D}=\sum_{k=1}^K\sum_{j=1}^{J^{2D}}w_j^{2D}c_{j,k}||\Pi(h_k\mathcal{P}(\theta_k[t],b_k))<em>j-P^{2D}</em>{k,j}[t]||_2^2<br>
-$$</p>
-<p>这里$c$是2D预测的置信度，$w_j^{2D}$是每个节点的相对权重, 下肢关节权重相对于躯干关节（屁股、脖子、肩膀）是1.7，同理肘是1.5，手腕是2.0，$\Pi$是相机投影矩阵，注意$\mathcal{P}(\theta_k[t],b_k))_j$输出单位高度，缩放因子$h_k$把它影射到测量坐标</p>
-<p>关节角度限制误差：</p>
-<pre><code>误差：关节限制规范给关节旋转角度范围增加限制，这是基于解剖学的关节角度范围
-</code></pre>
-<p>$$<br>
-E_{lim}=\sum_{k=1}^K\sum_{j=7}^{D=29}\left{\begin{aligned}&amp;(\theta_j^{min}-\theta_{k,j}[t])^2 &amp; &amp;,if \quad\theta_{k,j}[t]&lt;\theta_j^{min}\ &amp;(\theta_{k,j}[t]-\theta_j^{max})^2  &amp; &amp;,if\quad \theta_{k,j}[t]&gt;\theta_j^{max}\ &amp;0 &amp; &amp;,otherwise\end{aligned}\right.<br>
-$$</p>
-<p>骨架自由度从7开始是因为对全局位置和旋转参数没有限制，神经网络的估计的关节位置对于关节角度没有限制</p>
-<p>时间平滑误差：</p>
-<p>误差：网络基于每帧估计的坐标会存在时间上的抖动</p>
-<p>$$<br>
-E_{temp}(\Theta)=\sum_{k=1}^K||\nabla\theta_k[t-1]-\nabla\theta_k[t]||^2_2<br>
-$$</p>
-<pre><code> 使用平滑项更多惩罚深度方向有更少约束的变量，$E_&#123;depth&#125;=||\theta_&#123;k,2&#125;[t]_z-\theta_&#123;k,2&#125;[t-1]_z||$,这里$\theta_&#123;k,2&#125;$是自由度，它驱动了根节点的z坐标
-</code></pre>
-<p>逆运动追踪初始化：</p>
-<pre><code> 对于新人追踪时的头一帧，局部关节角度拟合3D预测坐标且只考虑 $E_&#123;3D&#125;$和$E_&#123;lim&#125;$误差，之后这些关节角度锁死同时最小化$E_&#123;2D&#125;$,这是为了对骨骼的全局位移和旋转做最佳拟合，随后完整的能量公式$\varepsilon(\theta_1[t],...,\theta_K[t])$被使用。
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 </li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://chauchy-Liu.github.io">刘传玺</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://chauchy-liu.github.io/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/">http://chauchy-liu.github.io/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://chauchy-Liu.github.io" target="_blank">和其光, 同其尘</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/13/hello-world/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover7.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hello World</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/21/flask-md/"><img class="next-cover" src="https://hexo-theme-snippet-1251680922.cos.ap-beijing.myqcloud.com/img/banner.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">flask.md</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">刘传玺</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chauchy-liu/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:liuchuanxi_211@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">学习笔记</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">姿态检测公式</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/07/02/autojs/" title="autojs"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover5.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="autojs"/></a><div class="content"><a class="title" href="/2024/07/02/autojs/" title="autojs">autojs</a><time datetime="2024-07-02T06:31:57.000Z" title="发表于 2024-07-02 14:31:57">2024-07-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/29/asyncio%E5%B9%B6%E5%8F%91/" title="asyncio并发"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover1.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="asyncio并发"/></a><div class="content"><a class="title" href="/2024/04/29/asyncio%E5%B9%B6%E5%8F%91/" title="asyncio并发">asyncio并发</a><time datetime="2024-04-29T13:26:27.000Z" title="发表于 2024-04-29 21:26:27">2024-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/robotic-operating-system/" title="机器人操作系统"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器人操作系统"/></a><div class="content"><a class="title" href="/2024/04/13/robotic-operating-system/" title="机器人操作系统">机器人操作系统</a><time datetime="2024-04-13T13:10:08.758Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/hello-world/" title="Hello World"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover7.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2024/04/13/hello-world/" title="Hello World">Hello World</a><time datetime="2024-04-13T13:10:08.753Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/" title="姿态检测公式"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="姿态检测公式"/></a><div class="content"><a class="title" href="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/" title="姿态检测公式">姿态检测公式</a><time datetime="2024-04-13T13:10:08.736Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By 刘传玺</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+<pre><code>- Kinematic Skeleton Fitting
+
+             得到2D和3D坐标，优化骨骼坐标$\&#123;\theta_k[t]\&#125;^&#123;K[t]&#125;_&#123;k=1&#125;$, $K[t]$是场景中t时刻所有的人数，$\theta_k[t]\in\mathbb&#123;R&#125;^D$从固定骨架的关节角度加上全局根节点坐标描述人的姿态坐标, ，D=29是一个骨骼的自由度数。估计$\theta_k[t]$使拟合能量最小化：
+
+    $$
+    \varepsilon(\theta_1[t],...,\theta_K[t])=w_&#123;3D&#125;E_&#123;3D&#125;+w_&#123;2D&#125;E_&#123;2D&#125;+w_&#123;lim&#125;E_&#123;lim&#125;+w_&#123;temp&#125;E_&#123;temp&#125;+w_&#123;depth&#125;E_&#123;depth&#125;
+    $$
+
+    权重$w_&#123;3D&#125;=9e-1, w_&#123;2D&#125;=1e-5, w_&#123;3D&#125;=5e-1, w_&#123;temp&#125;=1e-7, w_&#123;depth&#125;=8e-6$；
+
+    3D逆运动误差：
+
+    误差：预测的相对根节点的3D坐标$P^&#123;3D&#125;_k[t]$和骨骼$\mathscr&#123;P&#125;(\theta_k[t],b_k)$坐标，它由每个人k的每个关节j和骨骼长度$b_k$正向运动构成
+
+    $$
+    E_&#123;3D&#125;=\sum_&#123;k=1&#125;^K\sum_&#123;j=1&#125;^&#123;J^&#123;3D&#125;&#125;||\mathscr&#123;P&#125;(\theta_k[t],b_k)_j-P^&#123;3D&#125;_&#123;k,j&#125;[t]||_2^2
+    $$
+
+    2D从投影误差：
+
+    误差：预测的2D关节坐标$P^&#123;2D&#125;_k[t]$和骨骼投影 $\mathcal&#123;P&#125;(\theta_k[t],b_k)_j$坐标
+
+    $$
+    E_&#123;2D&#125;=\sum_&#123;k=1&#125;^K\sum_&#123;j=1&#125;^&#123;J^&#123;2D&#125;&#125;w_j^&#123;2D&#125;c_&#123;j,k&#125;||\Pi(h_k\mathcal&#123;P&#125;(\theta_k[t],b_k))_j-P^&#123;2D&#125;_&#123;k,j&#125;[t]||_2^2
+    $$
+
+    这里$c$是2D预测的置信度，$w_j^&#123;2D&#125;$是每个节点的相对权重, 下肢关节权重相对于躯干关节（屁股、脖子、肩膀）是1.7，同理肘是1.5，手腕是2.0，$\Pi$是相机投影矩阵，注意$\mathcal&#123;P&#125;(\theta_k[t],b_k))_j$输出单位高度，缩放因子$h_k$把它影射到测量坐标
+
+    关节角度限制误差：
+
+      误差：关节限制规范给关节旋转角度范围增加限制，这是基于解剖学的关节角度范围
+
+    $$
+    E_&#123;lim&#125;=\sum_&#123;k=1&#125;^K\sum_&#123;j=7&#125;^&#123;D=29&#125;\left\&#123;\begin&#123;aligned&#125;&amp;(\theta_j^&#123;min&#125;-\theta_&#123;k,j&#125;[t])^2 &amp; &amp;,if \quad\theta_&#123;k,j&#125;[t]&lt;\theta_j^&#123;min&#125;\\ &amp;(\theta_&#123;k,j&#125;[t]-\theta_j^&#123;max&#125;)^2  &amp; &amp;,if\quad \theta_&#123;k,j&#125;[t]&gt;\theta_j^&#123;max&#125;\\ &amp;0 &amp; &amp;,otherwise\end&#123;aligned&#125;\right.
+    $$
+
+    骨架自由度从7开始是因为对全局位置和旋转参数没有限制，神经网络的估计的关节位置对于关节角度没有限制
+
+    时间平滑误差：
+
+    误差：网络基于每帧估计的坐标会存在时间上的抖动
+
+    $$
+    E_&#123;temp&#125;(\Theta)=\sum_&#123;k=1&#125;^K||\nabla\theta_k[t-1]-\nabla\theta_k[t]||^2_2
+    $$
+
+       使用平滑项更多惩罚深度方向有更少约束的变量，$E_&#123;depth&#125;=||\theta_&#123;k,2&#125;[t]_z-\theta_&#123;k,2&#125;[t-1]_z||$,这里$\theta_&#123;k,2&#125;$是自由度，它驱动了根节点的z坐标
+
+    逆运动追踪初始化：
+
+       对于新人追踪时的头一帧，局部关节角度拟合3D预测坐标且只考虑 $E_&#123;3D&#125;$和$E_&#123;lim&#125;$误差，之后这些关节角度锁死同时最小化$E_&#123;2D&#125;$,这是为了对骨骼的全局位移和旋转做最佳拟合，随后完整的能量公式$\varepsilon(\theta_1[t],...,\theta_K[t])$被使用。
+</code></pre></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://chauchy-Liu.github.io">刘传玺</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://chauchy-liu.github.io/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/">http://chauchy-liu.github.io/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://chauchy-Liu.github.io" target="_blank">和其光, 同其尘</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">神经网络</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/13/hello-world/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Hello World</div></div></a></div><div class="next-post pull-right"><a href="/2024/02/21/flask-md/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">flask.md</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">刘传玺</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chauchy-liu/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:liuchuanxi_211@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">学习笔记</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">姿态检测公式</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/07/02/autojs/" title="autojs"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover1.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="autojs"/></a><div class="content"><a class="title" href="/2024/07/02/autojs/" title="autojs">autojs</a><time datetime="2024-07-02T06:31:57.000Z" title="发表于 2024-07-02 14:31:57">2024-07-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/29/asyncio%E5%B9%B6%E5%8F%91/" title="asyncio并发"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="asyncio并发"/></a><div class="content"><a class="title" href="/2024/04/29/asyncio%E5%B9%B6%E5%8F%91/" title="asyncio并发">asyncio并发</a><time datetime="2024-04-29T13:26:27.000Z" title="发表于 2024-04-29 21:26:27">2024-04-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/robotic-operating-system/" title="机器人操作系统"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器人操作系统"/></a><div class="content"><a class="title" href="/2024/04/13/robotic-operating-system/" title="机器人操作系统">机器人操作系统</a><time datetime="2024-04-13T13:10:08.758Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/hello-world/" title="Hello World"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2024/04/13/hello-world/" title="Hello World">Hello World</a><time datetime="2024-04-13T13:10:08.753Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/" title="姿态检测公式"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="姿态检测公式"/></a><div class="content"><a class="title" href="/2024/04/13/Xnect/%E5%A7%BF%E6%80%81%E6%A3%80%E6%B5%8B%E5%85%AC%E5%BC%8F/" title="姿态检测公式">姿态检测公式</a><time datetime="2024-04-13T13:10:08.736Z" title="发表于 2024-04-13 21:10:08">2024-04-13</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By 刘传玺</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
   endLoading: () => {
     document.body.style.overflow = 'auto';
     document.getElementById('loading-box').classList.add("loaded")
