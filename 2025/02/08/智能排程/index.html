@@ -1,0 +1,428 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>智能排程 | 和其光, 同其尘</title><meta name="keywords" content="java"><meta name="author" content="刘传玺"><meta name="copyright" content="刘传玺"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="蚁群算法蚁群算法（Ant Colony Optimization, ACO） 是一种基于群体智能的元启发式算法，灵感来源于蚂蚁觅食行为。蚂蚁在寻找食物时，会通过释放信息素（pheromone）来标记路径，其他蚂蚁会根据信息素的浓度选择路径。通过模拟这一行为，ACO 可以有效地解决组合优化问题，如旅行商问题（TSP）。  蚁群算法的基本思想 蚂蚁的路径选择：  每只蚂蚁根据信息素浓度和启发式信息（如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智能排程">
+<meta property="og:url" content="http://chauchy-liu.github.io/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/index.html">
+<meta property="og:site_name" content="和其光, 同其尘">
+<meta property="og:description" content="蚁群算法蚁群算法（Ant Colony Optimization, ACO） 是一种基于群体智能的元启发式算法，灵感来源于蚂蚁觅食行为。蚂蚁在寻找食物时，会通过释放信息素（pheromone）来标记路径，其他蚂蚁会根据信息素的浓度选择路径。通过模拟这一行为，ACO 可以有效地解决组合优化问题，如旅行商问题（TSP）。  蚁群算法的基本思想 蚂蚁的路径选择：  每只蚂蚁根据信息素浓度和启发式信息（如">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG">
+<meta property="article:published_time" content="2025-02-08T02:30:51.000Z">
+<meta property="article:modified_time" content="2025-02-10T09:14:12.385Z">
+<meta property="article:author" content="刘传玺">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://chauchy-liu.github.io/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '智能排程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-10 17:14:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">和其光, 同其尘</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">智能排程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-08T02:30:51.000Z" title="发表于 2025-02-08 10:30:51">2025-02-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-10T09:14:12.385Z" title="更新于 2025-02-10 17:14:12">2025-02-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="智能排程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="蚁群算法"><a href="#蚁群算法" class="headerlink" title="蚁群算法"></a>蚁群算法</h1><p><strong>蚁群算法（Ant Colony Optimization, ACO）</strong> 是一种基于群体智能的元启发式算法，灵感来源于蚂蚁觅食行为。蚂蚁在寻找食物时，会通过释放信息素（pheromone）来标记路径，其他蚂蚁会根据信息素的浓度选择路径。通过模拟这一行为，ACO 可以有效地解决组合优化问题，如旅行商问题（TSP）。</p>
+<hr>
+<h3 id="蚁群算法的基本思想"><a href="#蚁群算法的基本思想" class="headerlink" title="蚁群算法的基本思想"></a>蚁群算法的基本思想</h3><ol>
+<li><p><strong>蚂蚁的路径选择</strong>：</p>
+<ul>
+<li>每只蚂蚁根据信息素浓度和启发式信息（如距离）选择下一个要访问的城市。</li>
+<li>信息素浓度越高，路径被选择的概率越大。</li>
+</ul>
+</li>
+<li><p><strong>信息素更新</strong>：</p>
+<ul>
+<li>蚂蚁完成一次遍历后，会根据路径的长度更新信息素。</li>
+<li>路径越短，信息素增加得越多。</li>
+</ul>
+</li>
+<li><p><strong>正反馈机制</strong>：</p>
+<ul>
+<li>信息素的积累和挥发形成正反馈机制，使得较优路径的信息素浓度逐渐增加。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="TSP问题描述"><a href="#TSP问题描述" class="headerlink" title="TSP问题描述"></a>TSP问题描述</h3><p>假设有n个城市，城市之间的距离用一个距离矩阵$D$表示， $D_{ij}$表示城市i,j之间的距离。目标是找到一个路径或排列$\pi=(\pi_1,\pi_2, …, \pi_n)$,使得以下总距离最小：</p>
+<script type="math/tex; mode=display">总距离=D_{\pi_1\pi_2}+D_{\pi_2\pi_3}+\cdots+D_{\pi_{n-1}\pi_n}+D_{\pi_n\pi_1}</script><h3 id="蚁群算法解决-TSP-的步骤"><a href="#蚁群算法解决-TSP-的步骤" class="headerlink" title="蚁群算法解决 TSP 的步骤"></a>蚁群算法解决 TSP 的步骤</h3><ol>
+<li><p><strong>初始化</strong>：</p>
+<ul>
+<li>初始化信息素矩阵$\tau$，通常设置为一个较小的常数。</li>
+<li>初始化启发式信息矩阵 $ \eta $，通常为距离的倒数 $ \eta<em>{ij} = \frac{1}{D</em>{ij}} $。</li>
+</ul>
+</li>
+<li><p><strong>蚂蚁的路径构建</strong>：</p>
+<ul>
+<li>每只蚂蚁从起点出发，根据概率选择下一个城市，直到访问完所有城市。</li>
+<li>单只蚂蚁选择概率公式：<script type="math/tex; mode=display">
+P_{ij} = \frac{[\tau_{ij}]^\alpha \cdot [\eta_{ij}]^\beta}{\sum_{k \in \text{未访问城市}} [\tau_{ik}]^\alpha \cdot [\eta_{ik}]^\beta}</script>其中：<ul>
+<li>$ \tau_{ij} $ 是信息素浓度。</li>
+<li>$ \eta_{ij} $ 是启发式信息。</li>
+<li>$ \alpha $ 和 $ \beta $ 是控制信息素和启发式信息权重的参数。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>信息素更新</strong>：</p>
+<ul>
+<li>所有蚂蚁（蚂蚁有m只）完成各自路径构建后，更新信息素：<script type="math/tex; mode=display">
+\tau_{ij} = (1 - \rho) \cdot \tau_{ij} + \sum_{k=1}^m \Delta \tau_{ij}^k</script>其中：<ul>
+<li>$ \rho $ 是信息素挥发率。</li>
+<li>$ \Delta \tau_{ij}^k $ 是第 $ k $ 只蚂蚁在路径 $ (i, j) $ 上释放的信息素，通常与路径长度成反比：<script type="math/tex; mode=display">
+\Delta \tau_{ij}^k = \begin{cases}
+\frac{Q}{L_k} & \text{如果路径 } (i, j) \text{ 被蚂蚁 } k \text{ 选择} \\
+0 & \text{否则}
+\end{cases}</script><ul>
+<li>$ Q $ 是常数。</li>
+<li>$ L_k $ 是蚂蚁 $ k $ 的走过的路径长度。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>迭代</strong>：</p>
+<ul>
+<li>重复路径构建和信息素更新过程，直到达到最大迭代次数或找到满意解。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="代码实现（Python）"><a href="#代码实现（Python）" class="headerlink" title="代码实现（Python）"></a>代码实现（Python）</h3><p>以下是使用蚁群算法解决 TSP 的 Python 实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AntColony</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, distances, n_ants, n_iterations, decay, alpha=<span class="number">1</span>, beta=<span class="number">2</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        初始化参数：</span></span><br><span class="line"><span class="string">        - distances: 距离矩阵</span></span><br><span class="line"><span class="string">        - n_ants: 蚂蚁数量</span></span><br><span class="line"><span class="string">        - n_iterations: 迭代次数</span></span><br><span class="line"><span class="string">        - decay: 信息素挥发率</span></span><br><span class="line"><span class="string">        - alpha: 信息素权重</span></span><br><span class="line"><span class="string">        - beta: 启发式信息权重</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.distances = distances</span><br><span class="line">        self.n_ants = n_ants</span><br><span class="line">        self.n_iterations = n_iterations</span><br><span class="line">        self.decay = decay</span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.beta = beta</span><br><span class="line">        self.n_cities = <span class="built_in">len</span>(distances)</span><br><span class="line">        self.pheromone = np.ones((self.n_cities, self.n_cities))  <span class="comment"># 初始化信息素矩阵</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        best_path = <span class="literal">None</span></span><br><span class="line">        best_distance = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> iteration <span class="keyword">in</span> <span class="built_in">range</span>(self.n_iterations):</span><br><span class="line">            all_paths = self._build_paths()</span><br><span class="line">            self._update_pheromone(all_paths)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 更新最优路径</span></span><br><span class="line">            shortest_path = <span class="built_in">min</span>(all_paths, key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">if</span> shortest_path[<span class="number">1</span>] &lt; best_distance:</span><br><span class="line">                best_distance = shortest_path[<span class="number">1</span>]</span><br><span class="line">                best_path = shortest_path[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Iteration <span class="subst">&#123;iteration + <span class="number">1</span>&#125;</span>: Best Distance = <span class="subst">&#123;best_distance&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> best_path, best_distance</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_build_paths</span>(<span class="params">self</span>):</span><br><span class="line">        all_paths = []</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(self.n_ants):</span><br><span class="line">            path = self._build_single_path()</span><br><span class="line">            distance = self._calculate_distance(path)</span><br><span class="line">            all_paths.append((path, distance))</span><br><span class="line">        <span class="keyword">return</span> all_paths</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_build_single_path</span>(<span class="params">self</span>):</span><br><span class="line">        path = []</span><br><span class="line">        visited = <span class="built_in">set</span>()</span><br><span class="line">        start_city = np.random.randint(self.n_cities)  <span class="comment"># 随机选择起点</span></span><br><span class="line">        path.append(start_city)</span><br><span class="line">        visited.add(start_city)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(visited) &lt; self.n_cities:</span><br><span class="line">            next_city = self._choose_next_city(path[-<span class="number">1</span>], visited)</span><br><span class="line">            path.append(next_city)</span><br><span class="line">            visited.add(next_city)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> path</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_choose_next_city</span>(<span class="params">self, current_city, visited</span>):</span><br><span class="line">        probabilities = []</span><br><span class="line">        <span class="keyword">for</span> city <span class="keyword">in</span> <span class="built_in">range</span>(self.n_cities):</span><br><span class="line">            <span class="keyword">if</span> city <span class="keyword">not</span> <span class="keyword">in</span> visited:</span><br><span class="line">                pheromone = self.pheromone[current_city][city]</span><br><span class="line">                distance = self.distances[current_city][city]</span><br><span class="line">                probabilities.append((pheromone ** self.alpha) * ((<span class="number">1</span> / distance) ** self.beta))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                probabilities.append(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        probabilities = np.array(probabilities)</span><br><span class="line">        probabilities /= probabilities.<span class="built_in">sum</span>()  <span class="comment"># 归一化</span></span><br><span class="line">        next_city = np.random.choice(<span class="built_in">range</span>(self.n_cities), p=probabilities)</span><br><span class="line">        <span class="keyword">return</span> next_city</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_calculate_distance</span>(<span class="params">self, path</span>):</span><br><span class="line">        distance = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(path) - <span class="number">1</span>):</span><br><span class="line">            distance += self.distances[path[i]][path[i + <span class="number">1</span>]]</span><br><span class="line">        distance += self.distances[path[-<span class="number">1</span>]][path[<span class="number">0</span>]]  <span class="comment"># 回到起点</span></span><br><span class="line">        <span class="keyword">return</span> distance</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_update_pheromone</span>(<span class="params">self, all_paths</span>):</span><br><span class="line">        self.pheromone *= (<span class="number">1</span> - self.decay)  <span class="comment"># 信息素挥发</span></span><br><span class="line">        <span class="keyword">for</span> path, distance <span class="keyword">in</span> all_paths:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(path) - <span class="number">1</span>):</span><br><span class="line">                self.pheromone[path[i]][path[i + <span class="number">1</span>]] += <span class="number">1</span> / distance</span><br><span class="line">            self.pheromone[path[-<span class="number">1</span>]][path[<span class="number">0</span>]] += <span class="number">1</span> / distance  <span class="comment"># 回到起点</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">distances = np.array([</span><br><span class="line">    [<span class="number">0</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>],</span><br><span class="line">    [<span class="number">10</span>, <span class="number">0</span>, <span class="number">35</span>, <span class="number">25</span>],</span><br><span class="line">    [<span class="number">15</span>, <span class="number">35</span>, <span class="number">0</span>, <span class="number">30</span>],</span><br><span class="line">    [<span class="number">20</span>, <span class="number">25</span>, <span class="number">30</span>, <span class="number">0</span>]</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">ant_colony = AntColony(distances, n_ants=<span class="number">10</span>, n_iterations=<span class="number">100</span>, decay=<span class="number">0.1</span>, alpha=<span class="number">1</span>, beta=<span class="number">2</span>)</span><br><span class="line">best_path, best_distance = ant_colony.run()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Best Path:&quot;</span>, best_path)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Best Distance:&quot;</span>, best_distance)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><ul>
+<li><strong>蚂蚁数量（n_ants）</strong>：蚂蚁数量越多，搜索能力越强，但计算成本也越高。</li>
+<li><strong>迭代次数（n_iterations）</strong>：迭代次数越多，算法越有可能找到更优解。</li>
+<li><strong>信息素挥发率（decay）</strong>：控制信息素的挥发速度，通常取值在 0.1 到 0.5 之间。</li>
+<li><strong>信息素权重（alpha）</strong>：控制信息素对路径选择的影响。</li>
+<li><strong>启发式信息权重（beta）</strong>：控制启发式信息（如距离）对路径选择的影响。</li>
+</ul>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>蚁群算法是一种基于群体智能的优化算法，适合解决 TSP 等组合优化问题。</li>
+<li>通过模拟蚂蚁觅食行为，算法能够逐步找到较优解。</li>
+<li>算法的性能受参数设置影响较大，需要根据具体问题进行调整。</li>
+<li>蚁群算法的优势在于其并行性和鲁棒性，适合解决大规模复杂问题。</li>
+</ul>
+<h1 id="退火算法"><a href="#退火算法" class="headerlink" title="退火算法"></a>退火算法</h1><p><strong>模拟退火算法（Simulated Annealing, SA）</strong> 是一种基于概率的全局优化算法，灵感来源于固体退火过程。它通过引入“温度”参数和概率接受机制，能够在搜索过程中跳出局部最优解，逐步逼近全局最优解。模拟退火算法非常适合解决组合优化问题，如旅行商问题（TSP）。</p>
+<hr>
+<h3 id="模拟退火算法的基本思想"><a href="#模拟退火算法的基本思想" class="headerlink" title="模拟退火算法的基本思想"></a>模拟退火算法的基本思想</h3><ol>
+<li><strong>初始解</strong>：从一个初始解（例如随机路径）开始。</li>
+<li><strong>邻域搜索</strong>：在当前解的邻域中生成一个新解。</li>
+<li><strong>接受准则</strong>：<ul>
+<li>如果新解比当前解更优，则接受新解。</li>
+<li>如果新解比当前解差，则以一定概率接受新解。概率由以下公式决定：<script type="math/tex; mode=display">
+P = \exp\left(-\frac{\Delta E}{T}\right)</script>其中：<ul>
+<li>$\Delta E$ 是新解与当前解的目标函数值差。</li>
+<li>$T$ 是当前温度。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>降温</strong>：随着迭代次数增加，逐步降低温度 $T$。</li>
+<li><strong>终止条件</strong>：当温度降到某个阈值或达到最大迭代次数时，算法结束。</li>
+</ol>
+<hr>
+<h3 id="模拟退火算法解决-TSP-的步骤"><a href="#模拟退火算法解决-TSP-的步骤" class="headerlink" title="模拟退火算法解决 TSP 的步骤"></a>模拟退火算法解决 TSP 的步骤</h3><p>以下是使用模拟退火算法解决 TSP 的具体步骤：</p>
+<h4 id="1-初始化"><a href="#1-初始化" class="headerlink" title="1. 初始化"></a>1. <strong>初始化</strong></h4><ul>
+<li>生成一个初始路径（例如随机排列）。</li>
+<li>设置初始温度 $T_0$ 和降温速率 $\alpha$。</li>
+<li>设置终止温度 $T_{\text{min}}$ 和最大迭代次数。</li>
+</ul>
+<h4 id="2-邻域搜索"><a href="#2-邻域搜索" class="headerlink" title="2. 邻域搜索"></a>2. <strong>邻域搜索</strong></h4><p>在当前路径的邻域中生成一个新路径。常用的邻域操作包括：</p>
+<ul>
+<li><strong>交换</strong>：随机选择两个城市并交换它们的位置。</li>
+<li><strong>逆序</strong>：随机选择一段路径并逆序排列。</li>
+<li><strong>插入</strong>：随机选择一个城市并插入到另一个位置。</li>
+</ul>
+<h4 id="3-接受准则"><a href="#3-接受准则" class="headerlink" title="3. 接受准则"></a>3. <strong>接受准则</strong></h4><p>计算新路径的总距离 $E<em>{\text{new}}$ 和当前路径的总距离 $E</em>{\text{current}}$：</p>
+<ul>
+<li>如果 $E<em>{\text{new}} &lt; E</em>{\text{current}}$，接受新路径。</li>
+<li>如果 $E<em>{\text{new}} \geq E</em>{\text{current}}$，以概率 $P = \exp\left(-\frac{E<em>{\text{new}} - E</em>{\text{current}}}{T}\right)$ 接受新路径。</li>
+</ul>
+<h4 id="4-降温"><a href="#4-降温" class="headerlink" title="4. 降温"></a>4. <strong>降温</strong></h4><p>更新温度：</p>
+<script type="math/tex; mode=display">
+T = \alpha \cdot T</script><p>其中 $\alpha$ 是降温速率（通常取 $0.8 \leq \alpha \leq 0.99$）。</p>
+<h4 id="5-终止条件"><a href="#5-终止条件" class="headerlink" title="5. 终止条件"></a>5. <strong>终止条件</strong></h4><p>当温度降到 $T_{\text{min}}$ 或达到最大迭代次数时，算法结束。</p>
+<hr>
+<h3 id="代码实现（Python）-1"><a href="#代码实现（Python）-1" class="headerlink" title="代码实现（Python）"></a>代码实现（Python）</h3><p>以下是使用模拟退火算法解决 TSP 的 Python 实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算路径总距离</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_distance</span>(<span class="params">path, distances</span>):</span><br><span class="line">    distance = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(path) - <span class="number">1</span>):</span><br><span class="line">        distance += distances[path[i]][path[i + <span class="number">1</span>]]</span><br><span class="line">    distance += distances[path[-<span class="number">1</span>]][path[<span class="number">0</span>]]  <span class="comment"># 回到起点</span></span><br><span class="line">    <span class="keyword">return</span> distance</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成初始路径</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_initial_path</span>(<span class="params">n_cities</span>):</span><br><span class="line">    path = <span class="built_in">list</span>(<span class="built_in">range</span>(n_cities))</span><br><span class="line">    random.shuffle(path)</span><br><span class="line">    <span class="keyword">return</span> path</span><br><span class="line"></span><br><span class="line"><span class="comment"># 邻域操作：交换两个城市</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">swap_cities</span>(<span class="params">path</span>):</span><br><span class="line">    new_path = path.copy()</span><br><span class="line">    i, j = random.sample(<span class="built_in">range</span>(<span class="built_in">len</span>(path)), <span class="number">2</span>)</span><br><span class="line">    new_path[i], new_path[j] = new_path[j], new_path[i]</span><br><span class="line">    <span class="keyword">return</span> new_path</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟退火算法</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">simulated_annealing</span>(<span class="params">distances, T0=<span class="number">1000</span>, alpha=<span class="number">0.99</span>, T_min=<span class="number">1e-3</span>, max_iter=<span class="number">1000</span></span>):</span><br><span class="line">    n_cities = <span class="built_in">len</span>(distances)</span><br><span class="line">    current_path = generate_initial_path(n_cities)</span><br><span class="line">    current_distance = calculate_distance(current_path, distances)</span><br><span class="line">    best_path = current_path.copy()</span><br><span class="line">    best_distance = current_distance</span><br><span class="line"></span><br><span class="line">    T = T0</span><br><span class="line">    <span class="keyword">for</span> iteration <span class="keyword">in</span> <span class="built_in">range</span>(max_iter):</span><br><span class="line">        <span class="keyword">if</span> T &lt; T_min:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 生成新路径</span></span><br><span class="line">        new_path = swap_cities(current_path)</span><br><span class="line">        new_distance = calculate_distance(new_path, distances)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算能量差</span></span><br><span class="line">        delta_E = new_distance - current_distance</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 接受准则</span></span><br><span class="line">        <span class="keyword">if</span> delta_E &lt; <span class="number">0</span> <span class="keyword">or</span> random.random() &lt; math.exp(-delta_E / T):</span><br><span class="line">            current_path = new_path</span><br><span class="line">            current_distance = new_distance</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 更新最优解</span></span><br><span class="line">            <span class="keyword">if</span> current_distance &lt; best_distance:</span><br><span class="line">                best_path = current_path.copy()</span><br><span class="line">                best_distance = current_distance</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 降温</span></span><br><span class="line">        T *= alpha</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 打印当前状态</span></span><br><span class="line">        <span class="keyword">if</span> iteration % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Iteration <span class="subst">&#123;iteration&#125;</span>: Best Distance = <span class="subst">&#123;best_distance&#125;</span>, Temperature = <span class="subst">&#123;T&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> best_path, best_distance</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例</span></span><br><span class="line">distances = [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>],</span><br><span class="line">    [<span class="number">10</span>, <span class="number">0</span>, <span class="number">35</span>, <span class="number">25</span>],</span><br><span class="line">    [<span class="number">15</span>, <span class="number">35</span>, <span class="number">0</span>, <span class="number">30</span>],</span><br><span class="line">    [<span class="number">20</span>, <span class="number">25</span>, <span class="number">30</span>, <span class="number">0</span>]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">best_path, best_distance = simulated_annealing(distances)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Best Path:&quot;</span>, best_path)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Best Distance:&quot;</span>, best_distance)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="参数说明-1"><a href="#参数说明-1" class="headerlink" title="参数说明"></a>参数说明</h3><ul>
+<li><strong>初始温度 $T_0$</strong>：控制初始接受劣解的概率，通常设置为一个较大的值（如 1000）。</li>
+<li><strong>降温速率 $\alpha$</strong>：控制温度的下降速度，通常取 $0.8 \leq \alpha \leq 0.99$。</li>
+<li><strong>终止温度 $T_{\text{min}}$</strong>：当温度降到该值时，算法停止。</li>
+<li><strong>最大迭代次数</strong>：算法的最大运行次数。</li>
+</ul>
+<hr>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>模拟退火算法是一种全局优化算法，适合解决 TSP 等组合优化问题。</li>
+<li>通过引入温度和概率接受机制，算法能够跳出局部最优解，逐步逼近全局最优解。</li>
+<li>算法的性能受参数设置影响较大，需要根据具体问题进行调整。</li>
+<li>模拟退火算法的优势在于其简单性和鲁棒性，适合解决中小规模问题。</li>
+</ul>
+<h1 id="订单拣选问题"><a href="#订单拣选问题" class="headerlink" title="订单拣选问题"></a>订单拣选问题</h1><p><strong>问题概述</strong>：<br>订单拣选问题由一组需要准备交付给不同客户的订单组成。每个订单都由一组订单项目（请求的产品）组成。这些产品位于仓库或超市的货架上，并占用特定体积的空间。为了完成订单，超市中有一组可用的手推车，它们遵循计算的路径并拣选订单项目。在此路径的每个步骤中选取一个订单项。产品在仓库中的位置决定了手推车的路径，每个手推车中的空间被划分为多个具有指定容量的桶。订单拣选问题的目标是计算一个拣选计划，该计划为每个手推车提供路径并考虑以下约束：</p>
+<ul>
+<li><p>手推车的行驶距离被最小化。</p>
+</li>
+<li><p>必须拣选所有订单项。</p>
+</li>
+<li><p>来自不同订单的商品不得混合在同一个桶中，因此必须为将在同一手推车上准备的每个订单预留足够的桶。</p>
+</li>
+<li><p>应尽量减少将订单拆分为不同的手推车。</p>
+<p>  <img src="/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/image-20250210155157128.png" alt="image-20250210155157128"></p>
+</li>
+</ul>
+<p>为了表述问题，仓库被定义为一组组织成列和行的货架。商品位于特定货架的左侧或右侧的特定行上。货架、侧边和行决定了产品位置。</p>
+<p><img src="/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/image-20250210163159226.png" alt="image-20250210163159226"></p>
+<p>博客<a target="_blank" rel="noopener" href="https://www.optaplanner.org/blog/2021/10/14/OrderPickingQuickstart.html">https://www.optaplanner.org/blog/2021/10/14/OrderPickingQuickstart.html</a></p>
+<p>类比到智能巡检排程项目：</p>
+<ul>
+<li>订单：检修任务</li>
+<li>订单项：检修部件，检修的部件占用一定的发电损失，检修部件位于风场的风机上。</li>
+<li>手推车：检修人员。</li>
+<li>手推车行驶距离最小：发电量损失最小。</li>
+<li>不同部件不得同一时间让同一个检修员检修。</li>
+<li>同一风机的所有部件检修完前不得检修另一个风机的部件。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://chauchy-Liu.github.io">刘传玺</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://chauchy-liu.github.io/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/">http://chauchy-liu.github.io/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://chauchy-Liu.github.io" target="_blank">和其光, 同其尘</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/02/17/springboot/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">springboot</div></div></a></div><div class="next-post pull-right"><a href="/2024/07/02/autojs/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover1.JPG" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">autojs</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2025/02/17/springboot/" title="springboot"><img class="cover" src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-17</div><div class="title">springboot</div></div></a></div><div><a href="/2025/02/17/spring/" title="spring"><img class="cover" src="https://hexo-theme-snippet-1251680922.cos.ap-beijing.myqcloud.com/img/banner.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-17</div><div class="title">spring</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">刘传玺</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">25</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chauchy-liu/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:liuchuanxi_211@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">学习笔记</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">蚁群算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="toc-number">1.0.1.</span> <span class="toc-text">蚁群算法的基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TSP%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.0.2.</span> <span class="toc-text">TSP问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9A%81%E7%BE%A4%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3-TSP-%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.0.3.</span> <span class="toc-text">蚁群算法解决 TSP 的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%88Python%EF%BC%89"><span class="toc-number">1.0.4.</span> <span class="toc-text">代码实现（Python）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-number">1.0.5.</span> <span class="toc-text">参数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.0.6.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">退火算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="toc-number">2.0.1.</span> <span class="toc-text">模拟退火算法的基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E9%80%80%E7%81%AB%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3-TSP-%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.0.2.</span> <span class="toc-text">模拟退火算法解决 TSP 的步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.0.2.1.</span> <span class="toc-text">1. 初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%82%BB%E5%9F%9F%E6%90%9C%E7%B4%A2"><span class="toc-number">2.0.2.2.</span> <span class="toc-text">2. 邻域搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%8E%A5%E5%8F%97%E5%87%86%E5%88%99"><span class="toc-number">2.0.2.3.</span> <span class="toc-text">3. 接受准则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%99%8D%E6%B8%A9"><span class="toc-number">2.0.2.4.</span> <span class="toc-text">4. 降温</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E7%BB%88%E6%AD%A2%E6%9D%A1%E4%BB%B6"><span class="toc-number">2.0.2.5.</span> <span class="toc-text">5. 终止条件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%EF%BC%88Python%EF%BC%89-1"><span class="toc-number">2.0.3.</span> <span class="toc-text">代码实现（Python）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E-1"><span class="toc-number">2.0.4.</span> <span class="toc-text">参数说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">2.0.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A2%E5%8D%95%E6%8B%A3%E9%80%89%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">订单拣选问题</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/24/QT-C/" title="QT_C++"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QT_C++"/></a><div class="content"><a class="title" href="/2025/02/24/QT-C/" title="QT_C++">QT_C++</a><time datetime="2025-02-24T05:38:55.000Z" title="发表于 2025-02-24 13:38:55">2025-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/17/spring/" title="spring"><img src="https://hexo-theme-snippet-1251680922.cos.ap-beijing.myqcloud.com/img/banner.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="spring"/></a><div class="content"><a class="title" href="/2025/02/17/spring/" title="spring">spring</a><time datetime="2025-02-17T03:13:51.000Z" title="发表于 2025-02-17 11:13:51">2025-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/17/springboot/" title="springboot"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="springboot"/></a><div class="content"><a class="title" href="/2025/02/17/springboot/" title="springboot">springboot</a><time datetime="2025-02-17T01:42:22.000Z" title="发表于 2025-02-17 09:42:22">2025-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/" title="智能排程"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="智能排程"/></a><div class="content"><a class="title" href="/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/" title="智能排程">智能排程</a><time datetime="2025-02-08T02:30:51.000Z" title="发表于 2025-02-08 10:30:51">2025-02-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/02/autojs/" title="autojs"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover1.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="autojs"/></a><div class="content"><a class="title" href="/2024/07/02/autojs/" title="autojs">autojs</a><time datetime="2024-07-02T06:31:57.000Z" title="发表于 2024-07-02 14:31:57">2024-07-02</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover8.JPG')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By 刘传玺</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://chauchy-liu.github.io/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/'
+    this.page.identifier = '/2025/02/08/%E6%99%BA%E8%83%BD%E6%8E%92%E7%A8%8B/'
+    this.page.title = '智能排程'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":100,"height":200,"vOffset":-80,"hOffset":0},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
