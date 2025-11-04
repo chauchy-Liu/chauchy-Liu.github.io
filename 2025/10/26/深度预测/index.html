@@ -1,0 +1,835 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>深度预测 | 和其光, 同其尘</title><meta name="keywords" content="深度学习 视觉"><meta name="author" content="刘传玺"><meta name="copyright" content="刘传玺"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="12345678910111213141516模版1、研究目标：2、难点：3、背景：4、方法：5、相关研究：6、指标：7、分析：8、改进： 深度预测----------------------------------------------------------------------- Depth Map Prediction from a Single Image using a Multi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度预测">
+<meta property="og:url" content="http://chauchy-liu.github.io/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/index.html">
+<meta property="og:site_name" content="和其光, 同其尘">
+<meta property="og:description" content="12345678910111213141516模版1、研究目标：2、难点：3、背景：4、方法：5、相关研究：6、指标：7、分析：8、改进： 深度预测----------------------------------------------------------------------- Depth Map Prediction from a Single Image using a Multi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover6.JPG">
+<meta property="article:published_time" content="2025-10-26T13:01:33.000Z">
+<meta property="article:modified_time" content="2025-11-04T12:11:27.355Z">
+<meta property="article:author" content="刘传玺">
+<meta property="article:tag" content="深度学习 视觉">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover6.JPG"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://chauchy-liu.github.io/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="manifest" href="/img/pwa/manifest.json"/><link rel="apple-touch-icon" sizes="180x180" href="/img/pwa/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/pwa/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/pwa/16.png"/><link rel="mask-icon" href="/img/pwa/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '深度预测',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-04 20:11:27'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover6.JPG')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">和其光, 同其尘</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">深度预测</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-26T13:01:33.000Z" title="发表于 2025-10-26 21:01:33">2025-10-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-04T12:11:27.355Z" title="更新于 2025-11-04 20:11:27">2025-11-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">8.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>32分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="深度预测"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">模版</span><br><span class="line">1、研究目标：</span><br><span class="line"></span><br><span class="line">2、难点：</span><br><span class="line"></span><br><span class="line">3、背景：</span><br><span class="line"></span><br><span class="line">4、方法：</span><br><span class="line"></span><br><span class="line">5、相关研究：</span><br><span class="line"></span><br><span class="line">6、指标：</span><br><span class="line"></span><br><span class="line">7、分析：</span><br><span class="line"></span><br><span class="line">8、改进：</span><br></pre></td></tr></table></figure>
+<h1>深度预测-----------------------------------------------------------------------</h1>
+<h1>Depth Map Prediction from a Single Image using a Multi-Scale Deep Network</h1>
+<p>1、研究目标：预测三维几何结构深度。</p>
+<p>2、难点：</p>
+<ul>
+<li>ﬁnding depth relations from a single image is less straightforward, requiring integration of both global and local information from various cues.</li>
+<li>深度预测本身具有模糊性、技术上 不适定（<strong>一个没有唯一、稳定或存在解的问题</strong>），全局尺度问题（正常房屋和玩具屋），将注意力集中在场景内的空间关系而不是场景尺度上。</li>
+</ul>
+<p>3、背景：</p>
+<ul>
+<li>深度估计的需要的图像线索包括：线条角度和透视、物体大小、图像位置和大气效应。</li>
+</ul>
+<p>4、方法：</p>
+<ul>
+<li>
+<p>通过采用两个深度网络堆栈来解决此任务：一个基于整个图像进行粗略的全局预测，另一个在局部细化此预测。</p>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251027090655478.png" alt="image-20251027090655478"></p>
+</li>
+<li>
+<p>场景内使用尺度相关误差，整个场景使用尺度不变误差。</p>
+<ul>
+<li>
+<p>使用一个预言机将每个预测的平均对数深度替换为来自相应真实值的平均值，可将误差降低至0.33，相对提高了20%。</p>
+</li>
+<li>
+<p>一个预测深度图y和一个真实深度图$y^*$，每一个都有n个像素，以i为像素索引，定义尺度不变均方误差为：</p>
+<p>$$D(y,y*) = \frac{1}{2n}\sum_{i=1}^n(\log y_i-\log y^<em>_i+\alpha(y,y^</em>))^2$$</p>
+<p>$$\alpha(y, y^<em>) = \frac{1}{n}\sum_i(\log y_i^</em>-\log y_i)$$​</p>
+</li>
+<li>
+<p>$e^\alpha$是对齐预测图和真实图的最佳尺度。使得缩放y图具有相同的误差。</p>
+</li>
+<li>
+<p>等价公式, 定义$d_i = \log y_i - \log y_i^*$</p>
+<p>$$D(y,y^<em>) = \frac{1}{2n^2}\sum_{i,j}((\log y_i-\log y_j)-(\log y_i^</em>-\log y_j^*))^2$$</p>
+<p>$$= \frac{1}{2n^2}\sum_{i,j}(d_i-d_j)^2$$​​</p>
+<p>$$= \frac{1}{n}\sum_i d_i^2 - \frac{1}{n^2}\sum_{i,j}d_id_j = \frac{1}{n}\sum_id_i^2-\frac{1}{n^2}(\sum_id_i)^2$$</p>
+<p>为了使误差较低，预测中每对像素的深度差异必须与ground truth中相应像素对的深度差异相似</p>
+</li>
+</ul>
+</li>
+<li>
+<p>损失值除了考虑逐点误差，还考虑像素间深度关系。</p>
+<ul>
+<li>$$L(y,y^*)=\frac{1}{n}\sum_id^2_i-\frac{\lambda}{n^2}(\sum_id_i)^2$$​</li>
+</ul>
+</li>
+<li>
+<p>处理在目标边界、特殊表面上的缺失值</p>
+<ul>
+<li>只处理有效点位，屏蔽掉缺失值，即计算损失值的点位值考虑有效点位。</li>
+</ul>
+</li>
+<li>
+<p>图像预处理：</p>
+<ul>
+<li>图像缩放：输入和目标图像按比例因子 s ∈ [1, 1.5] 缩放，深度值除以 s。</li>
+<li>旋转：输入和目标旋转 r ∈ [−5, 5] 度。</li>
+<li>裁剪：输入和目标被随机裁剪</li>
+<li>颜色：输入值全局乘以一个随机RGB值c ∈ [0.8, 1.2]</li>
+<li>以0.5的概率水平翻转：输入和目标在水平方向上翻转</li>
+</ul>
+</li>
+<li>
+<p>图像分辨率扩展：</p>
+<ul>
+<li>使用最近邻插值将预测结果上采样到完整的原始输入分辨率。</li>
+</ul>
+</li>
+</ul>
+<p>5、相关研究：</p>
+<ul>
+<li>A. Saxena, S. H. Chung, and A. Y. Ng. Learning depth from single monocular images. In NIPS, 2005.
+<ul>
+<li>1、依赖图像水平对齐，2、在较少受控环境中表现不好。</li>
+</ul>
+</li>
+<li>M. P. Lubor Ladicky, Jianbo Shi. Pulling things out of perspective. In CVPR, 2014.
+<ul>
+<li>1、依赖手工特征，2、超像素分割图像。</li>
+</ul>
+</li>
+<li>C. Liu, J. Yuen, A. Torralba, J. Sivic, and W. Freeman. Sift ﬂow: dense correspondence across difference scenes. 2008.
+<ul>
+<li>1、运行时需要整个数据集，2、对齐程序执行成本高。</li>
+</ul>
+</li>
+<li>K. Konda and R. Memisevic. Unsupervised learning of depth and motion. In arXiv:1312.3429v2, 2013.
+<ul>
+<li>1、依赖立体视觉提供的局部位移。</li>
+</ul>
+</li>
+</ul>
+<p>6、指标：</p>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251027141824713.png" alt="image-20251027141824713"></p>
+<p>7、分析：</p>
+<ul>
+<li>当网络在这样的数据上进行训练时，由于边缘位置的不一致性，网络会倾向于**平均化（average over their more random placements）**这些随机错位的边缘位置。这种平均化效应导致预测的深度图在这些区域的边缘过渡变得模糊，无法像预期的那样实现锐利的细节对齐。因此，尽管模型在整体上可能表现良好，但在精细的局部结构（如物体边界和墙壁边缘）的预测上仍可能存在不足。</li>
+<li>虽然精细尺度网络在误差测量方面没有改进，但其效果在深度图中清晰可见——表面边界具有更清晰的过渡，与局部细节对齐。</li>
+<li>We achieve a new state-of-the-art on this task，having effectively leveraged the full raw data distributions.</li>
+</ul>
+<p>8、改进：</p>
+<ul>
+<li>兼容3D几何信息，例如表面法线。</li>
+<li>extend the depth maps to the full original input resolution by repeated application of successively ﬁner-scaled local networks.</li>
+</ul>
+<h1>扩散---------------------------------------------------------------------------------------</h1>
+<h1>DiffusionDepth: Diffusion Denoising Approach for Monocular Depth Estimation</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/duanyiqun/DiffusionDepth">GitHub</a></p>
+<p>1、研究目标：</p>
+<p>一种将单目深度估计重新定义为去噪扩散过程的新方法。</p>
+<p>2、难点：</p>
+<ul>
+<li>
+<p>回归类方法会遭受过拟合和不能令人满意的目标细节问题。</p>
+</li>
+<li>
+<p>二维图片和三维场景间映射的内在模糊性。</p>
+</li>
+<li>
+<p>离散的深度值会导致图像质量降低，体现在图像不连续和模糊。</p>
+</li>
+<li>
+<p>Q: 生成方法产生深度预测的问题是稀疏的真实深度图。该问题会使模型在正常的生成训练过程中崩溃。</p>
+<p>A: 引入自扩散过程，取代对真实深度图的直接扩散，逐渐向从当前的去噪图中优化的潜藏深度表示添加噪声。</p>
+</li>
+</ul>
+<p>3、背景：</p>
+<p>autonomous driving, robotics, and augmented reality</p>
+<p>4、方法：</p>
+<ul>
+<li>迭代去噪过程即从随机深度分布图中生成深度图。从左到右是去噪优化过程，从右到左是扩散过程。</li>
+</ul>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251102162749127.png" alt="image-20251102162749127"></p>
+<ol>
+<li>
+<p>扩散过程：$$q(x_t|x_0) := N(\bold{x}_t|\sqrt{\bar{\alpha_t}}\bold{x}_0, (1-\bar{\alpha_t})I)$$，即对图像进行高斯噪声模糊，迭代式向期望的深度图像分布$\bold{x}_0$添加噪声，并在添加t次噪声后得到潜在深度图的噪声样本$\bold{x}<em>t$, $t\in{0,1,\cdots,T}$, 其中$\bar{\alpha}<em>t:=\Pi</em>{s=0}^t\alpha_s=\Pi</em>{s=0}^t(1-\beta_s)$而$\beta_s$表示在s步上添加噪声的方差, $\bar{\alpha}_t$是一个随时间步 t 变化的系数，控制着原始信号的强度。，$(1-\bar{\alpha_t})I$协方差矩阵,$I$是单位矩阵，表示噪声是各向同性的（即在所有维度上的方差都相同）, $1-\bar{\alpha_t}$是一个随时间步 t变化的系数，控制着噪声的强度。</p>
+</li>
+<li>
+<p>去噪过程: $$p_\theta(\bold{x}<em>{t-1}|\bold{x}<em>t):=N(\bold{x}</em>{t-1};\mu</em>\theta(\bold{x}<em>t,t), \sigma^2_tI)$$，训练神经网络$\mu</em>\theta(\bold{x}<em>t,t)$通过交互式预测$\bold{x}</em>{t-1}$返回到$\bold{x}_0$。其中$\sigma_t^2$表示转移方差。期望的样本$\bold{x}_0$是从先验噪声$\bold{x}_T$​通过数学推理过程重构的。</p>
+</li>
+<li>
+<p>通过给定的图像特征图$C\in\mathbb{R}^{\frac{H}{4}\times\frac{W}{4}\times c}$引导的去噪过程：$$p_\theta(\bold{x}<em>{t-1}|\bold{x}<em>t,c):=N(\bold{x}</em>{t-1};\mu</em>\theta(\bold{x}_t,t,C), \sigma^2_tI)$$</p>
+</li>
+</ol>
+<ul>
+<li>提取随机深度分布作为输入，借助视觉图片引导通过去噪步骤精炼优化深度分布图，深度潜藏层由编解码器构成。通过稀疏有效屏蔽掩码在深度潜藏空间和深度图像空间分别对齐优化的深度预测和稀疏真实值。在许多深度估计数据集中，特别是室外场景（如KITTI），真实深度值往往是稀疏的，即并非所有像素都有对应的真实深度标注。稀疏有效掩码的作用是<strong>指示哪些像素点具有可用的真实深度值</strong>，从而确保损失函数只在这些有标签的有效像素上计算，避免模型被无标签区域的噪声或不确定性所误导。通过这种方式，模型能够有效地从稀疏的真实深度数据中学习，并将精炼后的预测深度与这些有限但准确的真实值进行对齐，从而克服了在稀疏GT场景下训练生成模型的挑战。</li>
+</ul>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251102164307115.png" alt="image-20251102164307115"></p>
+<p>Swin Transformer提取特征，输入的图像先分块，再映射成视觉词牌向量并添加位置嵌入向量。提取特征过程分别对不同尺度的图形进行。将不同尺度的特征聚合成$\frac{H}{4}\times\frac{W}{4}\times c$​​的特征。</p>
+<p><strong>潜藏空间</strong></p>
+<ol>
+<li>
+<p>不论扩散过程还是去噪过程使用的潜藏深度图,真实$\hat{x}_0\in\mathbb{R}^{\frac{H}{2}\times\frac{W}{2}\times d}$是通过对真实深度图$\hat{de}\in\mathbb{R}^{H\times W\times 1}$编码得到的, 其中潜藏维度为$d$​。</p>
+<p>编码过程使用具有$d$个通道、卷积核大小为1x1的瓶颈卷积模块。</p>
+</li>
+<li>
+<p>提炼到的潜藏深度图$x_0\in\mathbb{R}^{\frac{H}{2}\times\frac{W}{2}\times d}$到预测的深度图$de\in\mathbb{R}^{H\times W\times 1}$的解码过程是由1x1卷积、3x3反卷积、3x3卷积和Simoid激活函数依次连接构成，其中潜藏维度为$d$。深度图的计算公式为$de=(\frac{1}{sig(x_0)}).clamp(\eta)-1$,  $\eta$是最大输出深度的范围$1\mathrm{e}^6$。</p>
+</li>
+<li>
+<p>优化潜藏空间损失函数（双重监督）</p>
+<ul>
+<li>
+<p>深度图的损失$$L_{pixel}=\sqrt{\frac{1}{T}\sum_i\delta_i^2+\frac{\lambda}{T^2}(\sum_i\delta_i)^2}$$​</p>
+<p>$$\delta_i=\hat{de}-de$$是在有效掩码屏蔽后的真实深度图像和预测的深度图像逐像素的差值，$T$​​是所有有效的像素数目（有效屏蔽掩码未屏蔽的像素）。</p>
+</li>
+<li>
+<p>深度潜藏图的损失$L_{latent}=||x_0-\hat{x}_0||^2$，屏蔽掩码需要下采样到和深度潜藏图同尺度再进行屏蔽。</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>MCBD (Monocular Conditioned Denosing Block)</p>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251102165651811.png" alt="image-20251102165651811"></p>
+</li>
+</ul>
+<p>$\mu_\theta(\bold{x}_t,t,C)$的实现过程由MCBD描述。$C$是低分辨率的特征图像，与需要被去噪的深度潜藏图像$x_t$有局部强相关性。</p>
+<ol>
+<li>对$C$做投影（转置卷积）实现上采样使它和深度潜藏图$x_t$有相同的空间尺度和特征尺度$x_t\in\mathbb{R}^{\frac{H}{2}\times\frac{W}{2}\times d}$​同时保持局部相关性。</li>
+<li>对投影的特征图做卷积和自注意力处理。</li>
+<li>将自注意力处理后的投影特征图与经常规瓶颈网络处理后的深度潜藏图做对应像素相加式融合。</li>
+<li>融合后的深度潜藏图在被常规瓶颈网络处理、被带有残差连接的通道注意力网络处理。</li>
+<li>上述输出的深度潜藏图再经DDIM处理，预设好扩散超参$\beta,\alpha$​。</li>
+</ol>
+<p><strong>损失函数</strong></p>
+<p>扩散-去噪过程中可训练的参数在$$\mu_\theta(\bold{x}<em>t,t,C)$$和视觉特征提取过程中。优化过程是最小化扩散结果和去噪预测之间的损失值，即去噪损失$$L</em>{ddim}=||x_{t-1}-\mu_\theta(\bold{x}_t,t,C)||$$​​。</p>
+<p>总的损失函数为$$L=\lambda_1L_{ddim}+\lambda_2L_{pixel}+\lambda_3L_{latent}$$。</p>
+<p>5、相关研究：</p>
+<ul>
+<li>cnn
+<ul>
+<li>Depth map prediction from a single image using a multi-scale deep network</li>
+<li>Deep ordinal regression network for monocular depth estimation</li>
+</ul>
+</li>
+<li>diffusion
+<ul>
+<li>Denoising diffusion probabilistic models</li>
+<li>Score-based generative modeling through stochastic differential equations</li>
+<li>Diffusion models beat gans on image synthesis</li>
+</ul>
+</li>
+</ul>
+<p>6、指标：</p>
+<ul>
+<li>尺度不变对数误差（SILog）的平方根</li>
+</ul>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251104200543551.png" alt="image-20251104200543551"></p>
+<ul>
+<li>
+<p>均方根对数误差 (RMS log)</p>
+<p>$\frac{1}{N}\sqrt{\sum_{i,j}(e^{i,j})^2}$​</p>
+</li>
+<li>
+<p>域值精度($\delta_k$)：满足$\max(\frac{\hat{X}^{i,j}}{Z_{gt}^{i,j}}, \frac{Z_{gt}^{i,j}}{\hat{X}^{i,j}})&lt;1.25^k$的$\hat{X}^{i,j}$的百分比</p>
+</li>
+</ul>
+<p>7、分析：</p>
+<p>8、改进：</p>
+<h1>超分辨-------------------------------------------</h1>
+<h1>Deep Depth Super-Resolution : Learning Depth Super-Resolution using Deep Convolutional Neural Network</h1>
+<p>1、目标：</p>
+<p>基于深度卷积神经网络在彩色图像超分辨率方面的成功，我们提出了一种基于深度神经网络的深度图像超分辨率方法，以有效地学习从低分辨率深度图像到高分辨率深度图像的非线性映射。</p>
+<p>2、难点：</p>
+<ul>
+<li>
+<p>下采样图像丢失信息, LR图像中的已知变量远远少于HR深度图像中的未知变量。</p>
+</li>
+<li>
+<p>彩色图像和深度图像的本质差别</p>
+<ul>
+<li>信息获取机制：彩图捕捉物体表面光照、颜色、纹理；深图记录传感器距离信息。</li>
+<li>梯度特性：深图具有更少的纹理和锐利边界；</li>
+<li>高频信息敏感度：彩图高频信息包含：纹理、边界；深图高频信息包含：边界、几何结构变化非纹理，其精细结构易受噪声影响。</li>
+</ul>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251027193801176.png" alt="image-20251027193801176"></p>
+</li>
+<li>
+<p>当模型应用于具有不同RGB-D统计特性的新场景或数据集时，其生成的深度图像可能出现<strong>偏差（biased)</strong>。这种偏差可能表现为重建细节失真、边缘不准确或对噪声过于敏感等问题。做平滑处理。</p>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251028192850609.png" alt="image-20251028192850609"></p>
+</li>
+</ul>
+<p>3、背景：</p>
+<ul>
+<li>depth cameras，time-of-ﬂight (ToF) cameras，computer graphics，3D modeling，computer interaction.</li>
+<li>inferring all the missing high frequency contents.</li>
+</ul>
+<p>4、方法：</p>
+<ul>
+<li>提出了一种渐进式深度CNN框架，用于从低分辨率深度图像逐步学习高分辨率深度图像。</li>
+<li>利用深度场统计，深度图像与彩色图像之间的局部相关性提升细节；将先验知识整合到一个能量最小化公式中，深度神经网络学习一元项，深度场统计作为全局模型约束以及颜色-深度相关性用于加强深度图像中的局部结构。
+<ul>
+<li>条件随机场（conditional random field）。</li>
+<li>能量最小化框架由一元项、全局约束项、局部结构约束项。</li>
+<li>一元项：<strong>直接依赖于单个像素或单个数据点自身特征的能量项（置信度、初始估计）</strong></li>
+</ul>
+</li>
+<li>对于没有高分辨率彩色图像的深度图像，深度图像本身可以被用来优化深度图像。</li>
+<li>高分辨深图$D^H$和低分辩深图$D^L$, 从低分辩到高分辨的映射函数$F$​​由深度神经网络表示。上采样因子取值范围x2,x4,x8，</li>
+</ul>
+<p><strong>渐进卷积神经网络</strong></p>
+<ul>
+<li>渐进过程指多个计算深度图超分辨的卷积神经网络单元，每一个单元将前一个低分辩深图$D_i^L$计算出高分辨深图$D_{i+1}^L$，其作为下一个计算单元的低分辩深图输入。</li>
+</ul>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251027210144677.png" alt="image-20251027210144677"></p>
+<ul>
+<li>每一个神经网络计算单元参考Image Super-Resolution Using Deep Convolutional Networks。</li>
+<li>原则上可以训练整个网络，为了便于训练，连续训练每一个单元。</li>
+<li>提取表示层使用64个卷积核大小9x9；非线性层使用32个卷积核大小1x1;重构层使用卷积核大小5x5</li>
+</ul>
+<p><strong>颜色调制</strong></p>
+<p>记深度图像$u$位置的深度值为$D_u$, 颜色调制的推理模型可以表达为</p>
+<p>$$D_u=\sum_{v\in\Theta_u}\alpha(u,v)D_v$$</p>
+<p>其中$\Theta_u$是像素$u$的邻域。调制的模型和深度图在位置$u$的差异表示为</p>
+<p>$$\psi_u(D_u) = (D_u^*-\sum_{v\in\Theta_u}\alpha(u,v)D_v)^2$$​</p>
+<p>在整个深度图像上的差异表示为（卷积的矩阵表达）</p>
+<p>$$\sum_u\psi_u(D_u)=||A\mathrm{vec}(D)-\vec{b}||^2$$​</p>
+<p>设计像素u附近邻域的$\alpha(u,v)$时既要引入已有的高分辨颜色图像又要考虑对应的卷积网络预测的高分辨深度图像。</p>
+<p>$$\alpha(u,v) = \frac{1}{N_u}\alpha^{D^*}(u,v)\alpha^I(u,v)$$​</p>
+<p>$$\alpha^{D^<em>}(u,v)\propto\exp(-(D^</em>_u-D^<em><em>v)^2/2\sigma^2</em>{D_u^</em>})$$​</p>
+<p>$$\alpha^{I}(u,v)\propto\exp(-(I_u-I_v)^2/2\sigma^2_{I_u})$$​</p>
+<p>其中$N_u$是归一化因子，I是高分辨彩图，$\sigma_\cdot$是像素$u$​邻域内的方差。邻域大小为7x7,如果没有深度图对应的彩图就只使用深度图。</p>
+<p><strong>深度场统计</strong></p>
+<p>深度场梯度近似服从Laplace distribution，有一个2SHSWxSHSW矩阵P用于提取图像的X和Y方向的梯度，最小化总变差$||D||<em>{TV}\rightarrow \min$, $||D||</em>{TV}=||P\mathrm{vec}(D)||_1$​</p>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/WechatIMG46%20%E6%8B%B7%E8%B4%9D.png" alt="WechatIMG46 拷贝"></p>
+<p><strong>最小化能量公式</strong></p>
+<p>$$\min_D\frac{1}{2}||D-D^*||^2_F+\lambda_1||A\mathrm{vec}(D)-\vec{b}||^2+\lambda_2||P\mathrm{vec}(D)||_1$$</p>
+<p>$||\cdot||_F$ Frobenius 范数定义为矩阵元素的平方和的平方根。$\lambda_1, \lambda_2$取0.7，根据$P$提取的方向改写公式：</p>
+<p>$$\min_D\frac{1}{2}||D-D^*||^2_F+\lambda_1||A\mathrm{vec}(D)-\vec{b}||^2+\lambda_2\sum_i||P_i\mathrm{vec}(D)||_1\quad i\in{X,Y}$$</p>
+<p>参数$A,\vec{b},P$是深度图计算得到的参量而非优化目标直接更新的参量。</p>
+<p>优化方法：IRLS（iterative reweighted least squares）,给定第it次迭代中的深度图估计结果$D^{(\mathrm{it})}$，第it+1次迭代时优化表示为</p>
+<p>$$\min_D\frac{1}{2}||D-D^*||^2_F+\lambda_1||A\mathrm{vec}(D)-\vec{b}||^2+\lambda_2\sum_i\frac{||P_i\mathrm{vec}(D)||^2}{||P_i\mathrm{vec}(D)^{\mathrm{it}}||}\quad i\in{X,Y}$$​</p>
+<p>$$\rightarrow\min_D\frac{1}{2}||D-D^*||^2_F+\lambda_1||A\mathrm{vec}(D)-\vec{b}||^2+\lambda_2\sum_i||\frac{P_i}{\sqrt{||P_i\mathrm{vec(D^{(\mathrm{it})})}||}}\mathrm{vec}(D)||^2\quad i\in{X,Y}$$​</p>
+<p>记$E_i^{(\mathrm{it})}=\frac{P_i}{\sqrt{||P_i\mathrm{vec(D^{(\mathrm{it})})}||}}$为对P每行的重权重, $E_i^{(\mathrm{it})}=\left[\begin{align*}E_X^{(\mathrm{it})}\ E_Y^{(\mathrm{it})} \end{align*}\right]$</p>
+<p>$$D^{(\mathrm{it}+1)}=\arg,\min_D\frac{1}{2}||D-D^*||^2_F+\lambda_1||A\mathrm{vec}(D)-\vec{b}||^2+\lambda_2\sum_i||E^{(\mathrm{it})}\mathrm{vec}(D)||^2_F$$</p>
+<p>5、相关研究：</p>
+<ul>
+<li>
+<p>深度图超分辨方法可以分为</p>
+<ul>
+<li>depth image super-resolution from multiple depth images，<strong>同一场景在不同时间或从略微不同视角捕获的多张低分辨率深度图像</strong>。</li>
+<li>single depth image super-resolution with additional depth map data-set，<strong>仅仅一张低分辨率深度图像</strong>推断出高分辨率深度图像，为了克服单张图像信息量不足的问题，它会<strong>利用一个预先训练好的模型或一个外部的、包含大量高分辨率深度图像的数据库/数据集</strong>来提供先验知识。</li>
+<li>depth image SR with the assistant of high resolution color image</li>
+</ul>
+</li>
+<li>
+<p>Mac Aodha, O., Campbell, N.D., Nair, A., Brostow, G.J.: Patch based synthesis for single depth image super-resolution. In: Proc. Eur. Conf. Comp. Vis. Springer (2012) 71–84</p>
+</li>
+<li>
+<p>Hornacek,´ M., Rhemann, C., Gelautz, M., Rother, C.: Depth super resolution by rigid body self-similarity in 3d. In: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. (2013) 1123–1130</p>
+</li>
+<li>
+<p>Ferstl, D., Ruther, M., Bischof, H.: Variational depth superresolution using example-based edge representations. In: Proceedings of the IEEE International Conference on Computer Vision. (2015) 513–521</p>
+</li>
+<li>
+<p>Xie, J., Feris, R.S., Sun, M.T.: Edge-guided single depth image super resolution. Image Processing, IEEE Transactions on 25 (2016) 428–438</p>
+</li>
+<li>
+<p>Park, J., Kim, H., Tai, Y.W., Brown, M.S., Kweon, I.: High quality depth map upsampling for 3d-tof cameras. In: Computer Vision (ICCV), 2011 IEEE International Conference on, IEEE (2011) 1623–1630</p>
+</li>
+<li>
+<p>Yang, J., Ye, X., Li, K., Hou, C.: Depth recovery using an adaptive</p>
+<p>color-guided auto-regressive model. In: Computer Vision–ECCV 2012.</p>
+<p>Springer (2012) 158–171</p>
+</li>
+<li>
+<p>Ferstl, D., Reinbacher, C., Ranftl, R., Ruther, M., Bischof, H.: Image ¨</p>
+<p>guided depth upsampling using anisotropic total generalized variation.</p>
+<p>In: Proceedings of the IEEE International Conference on Computer</p>
+<p>Vision. (2013) 993–1000</p>
+</li>
+<li>
+<p>Zeyde, R., Elad, M., Protter, M.: On single image scale-up using sparserepresentations. In: Curves and Surfaces. Springer (2010) 711–730</p>
+</li>
+<li>
+<p>Yang, J., Wright, J., Huang, T.S., Ma, Y.: Image super-resolution via</p>
+<p>sparse representation. 19 (2010) 2861–2873</p>
+</li>
+<li>
+<p>Timofte, R., Smet, V., Gool, L.: Anchored neighborhood regression for</p>
+<p>fast example-based super-resolution. In: Proc. IEEE Int. Conf. Comp.</p>
+<p>Vis. (2013) 1920–1927</p>
+</li>
+<li>
+<p>Bevilacqua, M., Roumy, A., Guillemot, C., Alberi-Morel, M.L.: Lowcomplexity single-image super-resolution based on nonnegative neighbor</p>
+<p>embedding. (2012)</p>
+</li>
+<li>
+<p>Huang, J.B., Singh, A., Ahuja, N.: Single image super-resolution</p>
+<p>from transformed self-exemplars. In: Computer Vision and Pattern</p>
+<p>Recognition (CVPR), 2015 IEEE Conference on, IEEE (2015) 5197–</p>
+<p>5206</p>
+</li>
+</ul>
+<p>6、指标：</p>
+<ul>
+<li>RMSE（Root Mean Squared Error）</li>
+<li>SSIM（Structure Similarity of Index）</li>
+<li>MAE（Mean Absolute Error）</li>
+</ul>
+<p>7、分析：</p>
+<ul>
+<li>
+<p>The complexity of the non-linear mapping depends on the up-sampling factor</p>
+</li>
+<li>
+<p>1st训练阶段的结果存在环形伪影ring-effect</p>
+  <img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/%E6%88%AA%E5%B1%8F2025-10-29%2015.50.50.png" alt="截屏2025-10-29 15.50.50" style="zoom:50%;">
+</li>
+</ul>
+<p>8、改进：</p>
+<h1>Image Super-Resolution Using Deep Convolutional Networks</h1>
+<p>1、研究目标：</p>
+<p>2、难点：</p>
+<p>3、背景：</p>
+<p>4、方法：</p>
+<p><strong>超分辨卷积神经网络</strong></p>
+<ol>
+<li>
+<p>输入低分辩率深图经双向三次插值到高分辨率作为整个网络的初始输入Y（和高分辨图像的尺寸一致），经过网络后的图像F(Y), 实际的高分辨图像X。</p>
+</li>
+<li>
+<p>网络F包括三部分：</p>
+<ul>
+<li>
+<p>块的提取和表示：从Y图提取若干区块（可重叠），将每一个区块表示为高维特征向量，若干特征向量构成一组特征图，而且特征图的数量由特征向量的维度决定。该层网络表示为$F_1(Y)=\max(0,W_1<em>Y+B_1)=\hat{Y}$, $W_1$对应着$n_1$个卷积核$(c,f_1,f_1)$,卷积核数量$n_1$即输出的特征数, 输入的特征数量$c$, 核的尺寸$f_1$。$B_1$对应着$n_1$个和卷积核关联的偏移量。激活函数使用ReLU，max(0, x)作用于卷积输出量$W_1</em>Y+B_1$。</p>
+</li>
+<li>
+<p>非线性映射：将每个高维向量映射为另一个高维向量，但是此高维向量是高分辨率图像中某个块的高维向量表示。$$F_2(\hat{Y})=\max(0,W_2*\hat{Y}+B_2)=\tilde{Y}$$使用$n_2$个卷积核$(n_1,1,1)$计算$F_1$的输出特征，这里使用$1\times1$的核是对原始图的每一个区块做非线性映射，如果推广为$3\times3$等，表示对原始图的$3\times3$个区块共同做非线性映射，映射成一个高维向量。</p>
+</li>
+<li>
+<p>重构：汇集所有高分辨率区块的向量表示生成高分辨率图像，并期望重构图和真实图相似。在传统方法中，通常将预测的重叠高分辨率图像块进行平均，以生成最终的完整图像。依然使用卷积层重构图像$$F_3(\tilde{Y})=W_3*\tilde{Y}+B_3=\bar{Y}$$, $W_3$对应着$c$个卷积核$(n_2,f_3,f_3)$。$W_3$起到两个作用（1）将特征空间的系数表示的特征转会图像空间表示，（2）各图像块之间的重叠区域的加权平均。</p>
+</li>
+<li>
+<p>三种操作都是卷积层形式但是背后的动机不同。</p>
+</li>
+</ul>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251028133945621.png" alt="image-20251028133945621"></p>
+</li>
+</ol>
+<p><strong>训练</strong></p>
+<p>网络参数$\Theta={W_1,W_2,W_3,B_1,B_2,B_3}$,重构图$F(Y;\Theta)$,一组真实的高分辨图${X_i}$以及对应的低分辩图${Y_i}$, 损失函数使用均方误差MSE。</p>
+<p>$$L(\Theta) = \frac{1}{n}\sum_{i=1}^n||$F(Y_i;\Theta)-X_i||^2$$</p>
+<p>5、相关研究：</p>
+<p>6、指标：</p>
+<p>7、分析：</p>
+<p>8、改进：</p>
+<h1>Pulling Things out of Perspective</h1>
+<p>1、目标：</p>
+<p>当前最先进的单视图深度估计和语义分割方法的局限性与透视几何的性质密切相关，即物体的感知大小与距离成反比。利用此性质简化像素级深度分类器为只预测像素在任意规范深度位置处的可能性。</p>
+<p>7、分析：</p>
+<h1>掩码图像编码--------------------------------------------------------------------</h1>
+<h1>Masked Autoencoders Are Scalable Vision Learners</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/facebookresearch/mae">GitHub</a></p>
+<p>1、研究目标：</p>
+<p>自编码最早用于NLP，自编码在语言和视觉上的差异是什么？</p>
+<p>2、难点：</p>
+<ul>
+<li>
+<p>Q：图像处理大多用卷积，卷积作用在规则网格上，无法集成作为指示器的掩码词牌以及位置嵌入向量。</p>
+<p>A: Vision Transformers (ViT)，图像分块，像处理自然语言一样处理图像块序列。每个图像块展平为向量用线性投影映射到固定维度的嵌入空间中形成一个token。线性投影相当于1x1卷积。</p>
+</li>
+<li>
+<p>图像和语言的信息密度不同，语言的信息密度大，因此句子中部分单词的缺失会让模型挖掘和理解深层次的语意。图像具有空间冗余性（空间相邻的像素存在高度相关性和相似性），因此图像中缺失一块图元模型更会通过挖掘低层次信息（纹理、颜色）恢复图像，缺少对高层图像理解（场景、对像）。</p>
+<p>A：在图像中随机屏蔽遮挡大量图像块，破坏掉图像的冗余信息。创造了自监督学习任务。</p>
+</li>
+<li>
+<p>Q: 在自编码的解码器中，它会将潜藏表示映射回图像，但是相比图像的识别任务重构的像素具有更多的低级语意。</p>
+<p>A：使用掩码自编码，非对称设计编码和解码，编码器只对可见图像块编码，而解码器根据潜藏表示和掩码词牌重构图像。</p>
+</li>
+</ul>
+<p>3、背景：</p>
+<p>4、方法：</p>
+<ul>
+<li>非对称编解码架构，编码部分只对可见图像块操作；解码部分从潜藏表示和掩码词牌中重构图像。</li>
+<li>使掩码比重达到75%以上可以产生自监督学习。</li>
+</ul>
+<p>5、相关研究：</p>
+<ul>
+<li>掩码语言模型</li>
+<li>自编码</li>
+<li>屏蔽图像编码</li>
+<li>自监督学习</li>
+</ul>
+<p>6、指标：</p>
+<p>7、分析：</p>
+<p>8、改进：</p>
+<h1>时间序列-------------------------------------</h1>
+<h1>SimVP: Simpler yet Better Video Prediction</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/chengtan9907/OpenSTL">GitHub</a></p>
+<p>1、研究目标：</p>
+<p>提供一种更简单的只用CNN网络预测视频。</p>
+<p>2、难点：</p>
+<ul>
+<li>视频具有复杂性和随机性。</li>
+<li>不同模型使用不同的指标和数据，缺少对好性能必要性的理解。</li>
+<li>不同的代码框架、各自的独特技巧很难公平对比。</li>
+</ul>
+<p>3、背景：</p>
+<ul>
+<li>Vedio prediction, climate change, human motion, traffic flow.</li>
+<li>RNN架构，transformer架构，自回归、归一化流，针对训练策略的对抗神经网络训练。</li>
+<li>视频预测模型分4类：
+<ul>
+<li>RNN模块堆叠</li>
+<li>CNN-RNN-CNN堆叠</li>
+<li>CNN-ViT-CNN堆叠</li>
+<li>CNN-CNN-CNN堆叠</li>
+</ul>
+</li>
+</ul>
+<p>4、方法：</p>
+<ul>
+<li>问题描述：</li>
+</ul>
+<p>一个在$t$时刻包含了过去$T$个帧的视频序列$X_{t,T}={x_i}^t_{t-T+1}, i=t-T+1,\cdots, t$，需要预测$t$时刻未来$T^\prime$个帧的视频序列$Y_{t,T^\prime}={x_i}^{t+T^\prime}<em>{t+1}$，其中第$i$帧的图片$x_i\in\mathbb{R}^{C,H,W}$具有通道数C, 图像尺寸HxW。预测模型为$\mathcal{F}</em>\Theta: X_{t,T}\mapsto Y_{t,T^\prime}$，待学习和优化的参数为$\Theta$，通过损失函数$\mathcal{L}$优化参数为$\Theta^* = \arg,\min\limits_\Theta\mathcal{L}(\mathcal{F}<em>\Theta(X</em>{t,T}),Y_{t,T^\prime})$，损失函数可以任意选取，这里使用MSE损失函数。</p>
+<ul>
+<li>架构</li>
+</ul>
+<p><img src="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/image-20251030111016684.png" alt="image-20251030111016684"></p>
+<p>SimVP架构包含：</p>
+<ul>
+<li>编码器（CNN构成）：提取空间特征。</li>
+<li>转换器（CNN构成）：学习时间演化。</li>
+<li>解码器（CNN构成）：汇总时空信息预测未来帧。</li>
+</ul>
+<p><strong>编码器</strong></p>
+<p>堆砌$N_s$ 个ConvNormReLU（Conv2d+LayerNorm+LeakyReLU） 模块, $z_i=\sigma(LayerNorm(Conv2d(z_{i-1}))), 1\le i \le N_s$， 输入和输出$z_{i-1}, z_{i}$的形状分别为 $(T, C,H,W)$和$(T, \hat{C},\hat{H},\hat{W})$​</p>
+<p><strong>转换器</strong></p>
+<p>使用$N_t$个Inception模块在$(H,W)$图像对$T\times C$​个通道（时空特征）进行卷积。Inception中Conv核是1x1，并列的三个GroupConv2d的卷积核分别是1x1, 3x3, 5x5。</p>
+<p>$$z_j=Inception(z_{j-1}), N_s&lt;j\le N_s+N_t$$</p>
+<p>输入$z_{j-1}$, 输出$z_j$的形状分别为$(T\times C,H,W)$和$(\hat{T}\times\hat{C},H,W)$​</p>
+<p><strong>解码器</strong></p>
+<p>使用$N_s$个unConvNormReLU（ConvTranspose2d+GroupNorm+LeakyReLU）模块重构出预测帧，在$(H,W)$的图像上对$C$ 个通道进行卷积。</p>
+<p>$z_i=\sigma(GroupNorm(unConv2d(z_{i-1}))), N_s+N_t\le i \le 2N_s+N_t$</p>
+<p>输入$z_{j-1}$, 输出$z_j$的形状分别为$(\hat{T},\hat{C},H,W)$和$(T, C,H,W)$​， 反卷积操作使用ConvTranspose2d。</p>
+<p><strong>优化</strong></p>
+<p>$\min\limits_\Theta\mathcal{L}(\mathcal{F}<em>\Theta(X</em>{t,T}),Y_{t,T^\prime})$​</p>
+<p><strong>实验方案</strong></p>
+<p>数据只选择共用的数据集, 指标上如果原文中提供就首选原文指标，忽略复现方法的差异性。</p>
+<p>5、相关研究：</p>
+<ul>
+<li>SHI Xingjian, Zhourong Chen, Hao Wang, Dit-Yan Yeung, Wai-Kin Wong, and Wang-chun Woo. Convolutional lstm network: A machine learning approach for precipitation nowcasting. In Advances in neural information processing systems, pages 802–810, 2015. 1, 2, 5, 6, 7</li>
+<li>Yunbo Wang, Mingsheng Long, Jianmin Wang, Zhifeng Gao, and Philip S Yu. Predrnn: Recurrent neural networks for predictive learning using spatiotemporal lstms. In Proceedings of the 31st International Conference on Neural Information Processing Systems, pages 879–888, 2017. 1, 2, 5, 6, 7</li>
+<li>Marc Oliu, Javier Selva, and Sergio Escalera. Folded recurrent neural networks for future video prediction. In Proceedings of the European Conference on Computer Vision (ECCV), pages 716–731, 2018. 2, 7</li>
+<li>Yunbo Wang, Lu Jiang, Ming-Hsuan Yang, Li-Jia Li, Mingsheng Long, and Li Fei-Fei. Eidetic 3d lstm: A model for video prediction and beyond. In International conference on learning representations, 2018. 1, 2, 5, 6, 7, 12</li>
+<li>Vincent Le Guen and Nicolas Thome. Disentangling physical dynamics from unknown factors for unsupervised video prediction. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 11474– 11484, 2020. 1, 2, 4, 5, 6, 12</li>
+<li>Dirk Weissenborn, Oscar Tackstr¨ om,¨ and Jakob Uszkoreit. Scaling autoregressive video models. arXiv preprint arXiv:1906.02634, 2019. 1, 2, 3, 5</li>
+<li>Ruslan Rakhimov, Denis Volkhonskiy, Alexey Artemov, Denis Zorin, and Evgeny Burnaev. Latent video transformer. arXiv preprint arXiv:2006.10704, 2020. 1, 2, 3, 5</li>
+<li>Hang Gao, Huazhe Xu, Qi-Zhi Cai, Ruth Wang, Fisher Yu, and Trevor Darrell. Disentangling propagation and generation for video prediction. In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 9006– 9015, 2019. 2, 3, 7</li>
+<li>Yong-Hoon Kwon and Min-Gyu Park. Predicting future frames using retrospective cycle gan. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 1811–1820, 2019. 2, 7</li>
+<li>Viorica Patraucean, Ankur Handa, and Roberto Cipolla. Spatio-temporal video autoencoder with differentiable memory. arXiv preprint arXiv:1511.06309, 2015. 2</li>
+<li>Lluis Castrejon, Nicolas Ballas, and Aaron Courville. Improved conditional vrnns for video prediction. In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 7608–7617, 2019. 2</li>
+<li>Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco Massa, Alexandre Sablayrolles, and Herve´ Jegou. ´ Training data-efﬁcient image transformers &amp; distillation through attention. In International Conference on Machine Learning, pages 10347–10357. PMLR, 2021. 2</li>
+<li>Ze Liu, Yutong Lin, Yue Cao, Han Hu, Yixuan Wei, Zheng Zhang, Stephen Lin, and Baining Guo. Swin transformer: Hierarchical vision transformer using shifted windows. arXiv preprint arXiv:2103.14030, 2021. 2</li>
+<li>Daniel Neimark, Omri Bar, Maya Zohar, and Dotan Asselmann. Video transformer network. arXiv preprint arXiv:2102.00719, 2021. 2</li>
+<li>Anurag Arnab, Mostafa Dehghani, Georg Heigold, Chen Sun, Mario Luciˇ c,´ and Cordelia Schmid. Vivit: A video vision transformer. arXiv preprint arXiv:2103.15691, 2021. 2</li>
+<li>Gedas Bertasius, Heng Wang, and Lorenzo Torresani. Is space-time attention all you need for video understanding? arXiv preprint arXiv:2102.05095, 2021. 2</li>
+<li>Haoqi Fan, Bo Xiong, Karttikeya Mangalam, Yanghao Li, Zhicheng Yan, Jitendra Malik, and Christoph Feichtenhofer. Multiscale vision transformers. arXiv preprint arXiv:2104.11227, 2021. 2</li>
+<li>Ze Liu, Jia Ning, Yue Cao, Yixuan Wei, Zheng Zhang, Stephen Lin, and Han Hu. Video swin transformer. arXiv preprint arXiv:2106.13230, 2021. 3, 5</li>
+<li>Ziwei Liu, Raymond A Yeh, Xiaoou Tang, Yiming Liu, and Aseem Agarwala. Video frame synthesis using deep voxel ﬂow. In Proceedings of the IEEE International Conference on Computer Vision, pages 4463–4471, 2017. 2, 3, 6, 7</li>
+<li>Ziru Xu, Yunbo Wang, Mingsheng Long, Jianmin Wang, and MOE KLiss. Predcnn: Predictive learning with cascade convolutions. In IJCAI, pages 2940–2947, 2018. 2, 3</li>
+<li>Hsu-kuang Chiu, Ehsan Adeli, and Juan Carlos Niebles. Segmenting the future. IEEE Robotics and Automation Letters, 5(3):4202–4209, 2020. 2, 3</li>
+<li>Osamu Shouno. Photo-realistic video prediction on natural videos of largely changing frames. arXiv preprint arXiv:2003.08635, 2020. 2, 3, 7</li>
+</ul>
+<p>6、指标：</p>
+<ul>
+<li>MSE、MAE、SSIM、PSNR</li>
+<li>每个训练周期的运行时间</li>
+<li>每个样本在显存中占用</li>
+<li>单张图片的每秒浮点数运算FLOPS (floating point operations per second)，即吞吐量，越高计算越快</li>
+</ul>
+<p>​	区分FLOPs (Floating Point Operations), 指运算量，越低越好。</p>
+<p>7、分析：</p>
+<ul>
+<li>SimVP is much simpler than PhyDNet and CrevNet, without using RNN, LSTM, or complicated modules, which are considered as the important reason for performance improvement.</li>
+<li>it is promising to achieve better performance with a extremely simple model. Perhaps previous works pay too much attention to the model complexity and novelty, and it’s time to go back to basics because a simpler model makes things clearer.</li>
+<li>Simplicity leads to efﬁciency，简单高效意味着更易扩展和使用</li>
+<li>自己框架的转换器组件由CNN, RNN和T transformer的模块替换对比，展示哪种模块有利于视频预测。</li>
+<li>we may modify a few implementation details without changing the core algorithm。</li>
+<li>训练稳定后RNN比CNN的损失值更容易受大的学习率影响。</li>
+<li>基于CNN的方法的一个可能的局限性是，它可能难以扩展到具有灵活长度的预测</li>
+<li>Q: 在其他数据集中能否SOTA？途径：扩展数据集。A:yes.</li>
+<li>Q: 在其他数据集中是否具有良好泛化能力？途径：用一个新的样本集直接测试。A:yes.</li>
+<li>Q：能否扩展到灵活预测长度？途径：基于CNN的方法的一个可能的局限性是，它可能难以扩展到具有灵活长度的预测。通过模仿RNN的迭代过程来处理,即最近的预测结果作为输入。A:yes.</li>
+<li>Q: 架构中哪一部分对性能的提升起到关键作用？途径：消融，控制训练周期100，改变模块的参数指标，替换模块，去掉模块等。</li>
+<li>Q: 卷积核如何影响性能？途径：消融</li>
+<li>Q：编码、转换、解码分别扮演什么角色？途径：消融，首先三部分训练n个周期，三部分的保存参数$E_n, T_n, D_n$, 然后再训练m个周期，三部分的保存参数$E_m, T_m, D_m$, 控制任意两个部分用相同的周期参数，对比剩余部分的不同周期的参数在模型最后一层预测的结果。A: 翻译器主要集中于预测物体的位置和内容。解码器负责优化前景物体的形状。编码器可以通过空间UNet连接来消除背景误差。</li>
+</ul>
+<p>8、改进：</p>
+<h1>VISIONTS: Visual Masked Autoencoders Are Free-Lunch Zero-Shot Time Series Forecasters</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/Keytoyze/VisionTS">GitHub</a></p>
+<p>1、研究目标：</p>
+<p>一个在图像上预训练的视觉模型能否成为时间序列预测的免费午餐式基础模型？</p>
+<p>2、难点：</p>
+<ul>
+<li>不同样本集之间的差异，同一样本集内的异质性。</li>
+</ul>
+<p>3、背景：</p>
+<p>4、方法：</p>
+<p>5、相关研究：</p>
+<p>6、指标：</p>
+<p>7、分析：</p>
+<p>8、改进：</p>
+<h1>3D重建和渲染--------------------------------------------------------------------------------------------------------------------------</h1>
+<h1>3D Gaussian Splatting for Real-Time Radiance Field Rendering</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/graphdeco-inria/gaussian-splatting">GitHub</a></p>
+<h1>NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/nerfstudio-project/nerfstudio">GitHub</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://chauchy-Liu.github.io">刘传玺</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://chauchy-liu.github.io/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/">http://chauchy-liu.github.io/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://chauchy-Liu.github.io" target="_blank">和其光, 同其尘</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E8%A7%86%E8%A7%89/">深度学习 视觉</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover6.JPG" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/11/04/%E5%BA%94%E7%94%A8%E5%9E%8B%E6%96%87%E7%AB%A0/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">应用型文章</div></div></a></div><div class="next-post pull-right"><a href="/2025/09/08/%E5%85%89%E7%BA%A4%E4%BC%A0%E6%84%9F%E5%99%A8/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">光纤传感器</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">刘传玺</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chauchy-liu/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:liuchuanxi_211@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">学习笔记</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">深度预测-----------------------------------------------------------------------</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Depth Map Prediction from a Single Image using a Multi-Scale Deep Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">扩散---------------------------------------------------------------------------------------</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">DiffusionDepth: Diffusion Denoising Approach for Monocular Depth Estimation</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">超分辨-------------------------------------------</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">Deep Depth Super-Resolution : Learning Depth Super-Resolution using Deep Convolutional Neural Network</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">Image Super-Resolution Using Deep Convolutional Networks</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">Pulling Things out of Perspective</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">9.</span> <span class="toc-text">掩码图像编码--------------------------------------------------------------------</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">10.</span> <span class="toc-text">Masked Autoencoders Are Scalable Vision Learners</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">11.</span> <span class="toc-text">时间序列-------------------------------------</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">12.</span> <span class="toc-text">SimVP: Simpler yet Better Video Prediction</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">13.</span> <span class="toc-text">VISIONTS: Visual Masked Autoencoders Are Free-Lunch Zero-Shot Time Series Forecasters</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">14.</span> <span class="toc-text">3D重建和渲染--------------------------------------------------------------------------------------------------------------------------</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">15.</span> <span class="toc-text">3D Gaussian Splatting for Real-Time Radiance Field Rendering</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">16.</span> <span class="toc-text">NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/11/04/%E5%BA%94%E7%94%A8%E5%9E%8B%E6%96%87%E7%AB%A0/" title="应用型文章"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="应用型文章"/></a><div class="content"><a class="title" href="/2025/11/04/%E5%BA%94%E7%94%A8%E5%9E%8B%E6%96%87%E7%AB%A0/" title="应用型文章">应用型文章</a><time datetime="2025-11-04T12:39:22.000Z" title="发表于 2025-11-04 20:39:22">2025-11-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/" title="深度预测"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover6.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="深度预测"/></a><div class="content"><a class="title" href="/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/" title="深度预测">深度预测</a><time datetime="2025-10-26T13:01:33.000Z" title="发表于 2025-10-26 21:01:33">2025-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/08/%E5%85%89%E7%BA%A4%E4%BC%A0%E6%84%9F%E5%99%A8/" title="光纤传感器"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="光纤传感器"/></a><div class="content"><a class="title" href="/2025/09/08/%E5%85%89%E7%BA%A4%E4%BC%A0%E6%84%9F%E5%99%A8/" title="光纤传感器">光纤传感器</a><time datetime="2025-09-08T15:28:12.000Z" title="发表于 2025-09-08 23:28:12">2025-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/06/deepseek/" title="deepseek"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover5.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="deepseek"/></a><div class="content"><a class="title" href="/2025/03/06/deepseek/" title="deepseek">deepseek</a><time datetime="2025-03-06T08:15:26.000Z" title="发表于 2025-03-06 16:15:26">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/24/QT-C/" title="QT_C++"><img src="https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QT_C++"/></a><div class="content"><a class="title" href="/2025/02/24/QT-C/" title="QT_C++">QT_C++</a><time datetime="2025-02-24T05:38:55.000Z" title="发表于 2025-02-24 13:38:55">2025-02-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Justlovesmile/CDN2/post/cover6.JPG')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By 刘传玺</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'http://chauchy-liu.github.io/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/'
+    this.page.identifier = '/2025/10/26/%E6%B7%B1%E5%BA%A6%E9%A2%84%E6%B5%8B/'
+    this.page.title = '深度预测'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":100,"height":200,"vOffset":-80,"hOffset":0},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
